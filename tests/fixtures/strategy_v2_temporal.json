@@ -1,0 +1,34 @@
+{
+  "strategy_schema_version": 2,
+  "name": "Codex V2 mechanical example",
+  "author": {"name": "Codex", "kind": "example", "model": "", "submitted_at": "2026-10-02", "prompt": "Mechanical V2 fixture; not an actual external author submission.", "attempts": 1, "edited_by": ""},
+  "description": "Temporal entry and cost checkpoint fixture; not evidence of profitability.",
+  "original_text": "Arm a long setup when completed return_5m_bps reaches 20. On either of the next two completed minutes, confirm a pullback return_1m_bps from -20 through -2 with positive sma_gap_bps. Reset when sma_gap_bps is non-positive, any referenced input is unknown, setup expires, or observed bars skip. One position, no adds, 20% sizing, SL40/TP90, no authored max hold. Admission deadline only blocks new entries. At the first new completed bar after180 seconds from actual first fill, close if gross executable-side gain is below the ex-ante entry cost hurdle. UNKNOWN checkpoint costs defer this checkpoint. This is a mechanical example and must not be attributed to Sol/Astra or used as evidence of edge.",
+  "confirmed": true,
+  "rules": {
+    "side": "long",
+    "size_pct": 20,
+    "max_entries": 1,
+    "add_after_bps": 20,
+    "stop_loss_bps": 40,
+    "take_profit_bps": 90,
+    "max_hold_seconds": null,
+    "cooldown_seconds": 180,
+    "max_spread_bps": 1.5,
+    "entry": {
+      "long": {
+        "setup": {"feature": "return_5m_bps", "op": "gte", "value": 20},
+        "confirm": {"all": [
+          {"feature": "return_1m_bps", "op": "gte", "value": -20},
+          {"feature": "return_1m_bps", "op": "lte", "value": -2},
+          {"feature": "sma_gap_bps", "op": "gt", "value": 0}
+        ]},
+        "invalidate": {"feature": "sma_gap_bps", "op": "lte", "value": 0},
+        "expiry_bars": 2
+      }
+    },
+    "exit": null,
+    "add_when": null,
+    "cost_checkpoint": {"after_seconds": 180, "when": {"feature": "gross_gain_bps", "op": "lt", "ref": "entry_cost_hurdle_bps"}}
+  }
+}

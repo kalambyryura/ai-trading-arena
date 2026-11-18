@@ -1,0 +1,1 @@
+{"id":"T000","kind":"init","at_utc":"{{NOW_UTC}}","author":"{{AUTHOR}}","note":"trials ledger created; one JSON object per line, appended and never edited; a correction is a new line of kind correction; kinds: prereg, config, control, descriptive, exploration, code_check, data_check, reconciliation, correction, design_error, verdict"}

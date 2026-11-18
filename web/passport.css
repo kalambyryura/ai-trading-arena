@@ -1,0 +1,39 @@
+/* Public strategy passport card (web/passport.js). Every rule is scoped to .passport or .passport-missing: nothing here touches the arena,
+   the coliseum or any other page. Colours fall back to the arena tokens; muted text is darker than --muted so it keeps 4.5:1 on the card. */
+.passport{--pp-ink:var(--ink,#213c2f);--pp-muted:#566656;--pp-line:var(--line,#dce2d3);--pp-paper:var(--card,#fffefa);--pp-accent:#4f6b34;--pp-soft:#f3f6e8;--pp-warn:#7a431e;
+  box-sizing:border-box;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-flow:dense;align-items:start;gap:16px 28px;
+  max-width:900px;margin:0 auto;padding:24px 26px;border:1px solid var(--pp-line);border-radius:14px;background:var(--pp-paper);color:var(--pp-ink);
+  font:14px/1.55 Inter,"Segoe UI",Arial,sans-serif;overflow-wrap:anywhere}
+.passport *{box-sizing:border-box}
+.passport>*{grid-column:1/-1;margin:0}
+.passport>.passport-section{grid-column:auto}
+.passport>.passport-part-idea,.passport>.passport-part-weak,.passport>.passport-part-author,.passport>.passport-part-evidence{grid-column:1/-1}
+.passport-banner{padding:8px 12px;border:1px dashed #c07a4a;border-radius:8px;background:#fbefe3;color:var(--pp-warn);font-size:12px;font-weight:700;letter-spacing:.04em}
+.passport-head{display:grid;gap:4px}
+.passport-title{margin:0;font:600 24px/1.25 Georgia,"Times New Roman",serif}
+.passport-author{margin:0;font-size:14px;font-weight:600}
+.passport-origin{margin:0;color:var(--pp-muted);font-size:12.5px}
+.passport-tagline{padding-left:14px;border-left:3px solid var(--pp-accent);font:17px/1.45 Georgia,"Times New Roman",serif}
+.passport-note{color:var(--pp-muted);font-size:13px;font-style:italic}
+.passport-section{min-width:0}
+.passport-heading{margin:0 0 6px;color:var(--pp-accent);font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.passport-section p{margin:0 0 6px}
+.passport-list{margin:0;padding-left:18px}
+.passport-list li{margin:0 0 5px}
+.passport-jev-role{font-weight:600}
+.passport-attempts{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums}
+.passport-quote{margin:0 0 6px;padding:10px 14px;border-left:3px solid var(--pp-accent);background:var(--pp-soft);font:italic 15px/1.5 Georgia,"Times New Roman",serif}
+.passport-signed{color:var(--pp-muted);font-size:12.5px}
+.passport-part-evidence{padding:12px 14px;border:1px solid var(--pp-line);border-radius:10px;background:#faf9f0}
+.passport-fine{color:var(--pp-muted);font-size:12px;font-variant-numeric:tabular-nums}
+.passport-links{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0;padding:0;list-style:none}
+.passport-link{color:var(--pp-accent);text-underline-offset:3px}
+.passport-link:focus-visible{outline:3px solid #8a6a1e;outline-offset:2px;border-radius:3px}
+.passport-disclaimer{padding-top:12px;border-top:1px solid var(--pp-line);color:var(--pp-muted);font-size:12.5px}
+.passport-missing{max-width:900px;margin:0 auto;padding:12px 14px;border:1px dashed #cfd6c3;border-radius:10px;color:#566656;font-size:13px}
+@media(max-width:720px){
+  .passport{grid-template-columns:minmax(0,1fr);gap:14px;padding:18px 16px}
+  .passport>.passport-section{grid-column:1/-1}
+  .passport-title{font-size:21px}
+  .passport-tagline{font-size:16px}
+}

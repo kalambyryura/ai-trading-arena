@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="272" viewBox="0 0 880 272" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+<title id="t">Long-horizon trend: most of the profit was the market rising</title><desc id="d">Horizontal bars in basis points per trade: breakout entries 622, random entries with the same holding times 462.</desc>
+<rect width="880" height="272" rx="12" fill="#fcfcfb"/>
+<text x="24.0" y="38.0" fill="#0b0b0b" font-size="20" font-weight="600" text-anchor="start">Long-horizon trend: most of the profit was the market rising</text>
+<text x="24.0" y="62.0" fill="#52514e" font-size="14" font-weight="400" text-anchor="start">Average gross result per trade, SOL channel breakout, Jan 2021 – Oct 2026 history · bps</text>
+<line x1="300.0" y1="84" x2="300.0" y2="184" stroke="#e1e0d9" stroke-width="1"/>
+<text x="300.0" y="204.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">0</text>
+<line x1="365.7" y1="84" x2="365.7" y2="184" stroke="#e1e0d9" stroke-width="1"/>
+<text x="365.7" y="204.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">100</text>
+<line x1="431.4" y1="84" x2="431.4" y2="184" stroke="#e1e0d9" stroke-width="1"/>
+<text x="431.4" y="204.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">200</text>
+<line x1="497.1" y1="84" x2="497.1" y2="184" stroke="#e1e0d9" stroke-width="1"/>
+<text x="497.1" y="204.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">300</text>
+<line x1="562.9" y1="84" x2="562.9" y2="184" stroke="#e1e0d9" stroke-width="1"/>
+<text x="562.9" y="204.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">400</text>
+<line x1="628.6" y1="84" x2="628.6" y2="184" stroke="#e1e0d9" stroke-width="1"/>
+<text x="628.6" y="204.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">500</text>
+<line x1="694.3" y1="84" x2="694.3" y2="184" stroke="#e1e0d9" stroke-width="1"/>
+<text x="694.3" y="204.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">600</text>
+<line x1="760.0" y1="84" x2="760.0" y2="184" stroke="#e1e0d9" stroke-width="1"/>
+<text x="760.0" y="204.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">700</text>
+<line x1="300.0" y1="84" x2="300.0" y2="184" stroke="#c3c2b7" stroke-width="1"/>
+<text x="24.0" y="115.0" fill="#0b0b0b" font-size="14" font-weight="400" text-anchor="start">Breakout entries (the selected strategy)</text>
+<path d="M300.0,99.0 H704.7 Q708.7,99.0 708.7,103.0 V117.0 Q708.7,121.0 704.7,121.0 H300.0 Z" fill="#2a78d6"/>
+<text x="716.7" y="115.0" fill="#0b0b0b" font-size="14" font-weight="600" text-anchor="start">622</text>
+<text x="24.0" y="159.0" fill="#0b0b0b" font-size="14" font-weight="400" text-anchor="start">Random entries, same holding times</text>
+<path d="M300.0,143.0 H599.6 Q603.6,143.0 603.6,147.0 V161.0 Q603.6,165.0 599.6,165.0 H300.0 Z" fill="#b9b7ae"/>
+<text x="611.6" y="159.0" fill="#0b0b0b" font-size="14" font-weight="600" text-anchor="start">462</text>
+<text x="24.0" y="250.0" fill="#52514e" font-size="13" font-weight="400" text-anchor="start">31% of random-entry samples did as well. On fresh data from July 2025 it lost 0.79 USDT over 11 trades.</text>
+</svg>

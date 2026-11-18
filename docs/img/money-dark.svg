@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="360" viewBox="0 0 880 360" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+<title id="t">Where the money went</title><desc id="d">Horizontal bars in USDT: price moves +0.07, exchange fees −1.71, funding −0.01, net −1.65.</desc>
+<rect width="880" height="360" rx="12" fill="#1a1a19"/>
+<text x="24.0" y="38.0" fill="#f0efec" font-size="20" font-weight="600" text-anchor="start">Where the money went</text>
+<text x="24.0" y="62.0" fill="#c3c2b7" font-size="14" font-weight="400" text-anchor="start">All 86 real trades on OKX, Sep 29 – Nov 17, 2026 · USDT</text>
+<line x1="300.0" y1="84" x2="300.0" y2="272" stroke="#2c2c2a" stroke-width="1"/>
+<text x="300.0" y="292.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">−2.0</text>
+<line x1="392.0" y1="84" x2="392.0" y2="272" stroke="#2c2c2a" stroke-width="1"/>
+<text x="392.0" y="292.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">−1.5</text>
+<line x1="484.0" y1="84" x2="484.0" y2="272" stroke="#2c2c2a" stroke-width="1"/>
+<text x="484.0" y="292.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">−1.0</text>
+<line x1="576.0" y1="84" x2="576.0" y2="272" stroke="#2c2c2a" stroke-width="1"/>
+<text x="576.0" y="292.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">−0.5</text>
+<line x1="668.0" y1="84" x2="668.0" y2="272" stroke="#2c2c2a" stroke-width="1"/>
+<text x="668.0" y="292.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">0</text>
+<line x1="760.0" y1="84" x2="760.0" y2="272" stroke="#2c2c2a" stroke-width="1"/>
+<text x="760.0" y="292.0" fill="#898781" font-size="12" font-weight="400" text-anchor="middle">+0.5</text>
+<line x1="668.0" y1="84" x2="668.0" y2="272" stroke="#383835" stroke-width="1"/>
+<text x="24.0" y="115.0" fill="#f0efec" font-size="14" font-weight="400" text-anchor="start">Result of price moves</text>
+<path d="M668.0,99.0 H677.1 Q681.1,99.0 681.1,103.0 V117.0 Q681.1,121.0 677.1,121.0 H668.0 Z" fill="#3987e5"/>
+<text x="689.1" y="115.0" fill="#f0efec" font-size="14" font-weight="600" text-anchor="start">+0.07</text>
+<text x="24.0" y="159.0" fill="#f0efec" font-size="14" font-weight="400" text-anchor="start">Exchange fees</text>
+<path d="M668.0,143.0 H357.1 Q353.1,143.0 353.1,147.0 V161.0 Q353.1,165.0 357.1,165.0 H668.0 Z" fill="#e66767"/>
+<text x="345.1" y="159.0" fill="#f0efec" font-size="14" font-weight="600" text-anchor="end">−1.71</text>
+<text x="24.0" y="203.0" fill="#f0efec" font-size="14" font-weight="400" text-anchor="start">Funding payments</text>
+<path d="M668.0,187.0 H668.0 Q666.7,187.0 666.7,188.3 V207.7 Q666.7,209.0 668.0,209.0 H668.0 Z" fill="#e66767"/>
+<text x="658.7" y="203.0" fill="#f0efec" font-size="14" font-weight="600" text-anchor="end">−0.01</text>
+<text x="24.0" y="247.0" fill="#f0efec" font-size="14" font-weight="400" text-anchor="start">Net result</text>
+<path d="M668.0,231.0 H369.0 Q365.0,231.0 365.0,235.0 V249.0 Q365.0,253.0 369.0,253.0 H668.0 Z" fill="#e66767"/>
+<text x="357.0" y="247.0" fill="#f0efec" font-size="14" font-weight="600" text-anchor="end">−1.65</text>
+<text x="24.0" y="338.0" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start">Fees were 24 times larger than what the price moves earned.</text>
+</svg>

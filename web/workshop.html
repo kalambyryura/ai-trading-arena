@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="panel-token" content="__PANEL_TOKEN__">
+  <meta name="theme-color" content="#f5f4e9">
+  <title>Майстерня стратегій · Jev Trading Lab</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/arena.css">
+  <link rel="stylesheet" href="/workshop.css">
+  <link rel="stylesheet" href="/arena-lifecycle.css">
+  <link rel="stylesheet" href="/research-panels.css">
+  <link rel="stylesheet" href="/workshop-tools-ui.css">
+  <script src="/arena-lifecycle.js" defer></script>
+  <script src="/review-model.js" defer></script>
+  <script src="/research-panels.js" defer></script>
+  <script src="/workshop-tools-ui.js" defer></script>
+  <script src="/demo-execution.js" defer></script>
+  <script src="/strategy-research.js" defer></script>
+  <script src="/workshop.js" defer></script>
+</head>
+<body class="workshop-body">
+  <div class="page-shell workshop-page">
+    <header class="topbar">
+      <a class="brand" href="/arena"><span class="brand-symbol">J</span><span>Jev <i>/ Trading Lab</i></span></a>
+      <nav aria-label="Навігація"><a class="nav-link" href="/arena">Арена</a><a class="nav-link" href="/league">Ліга</a><a class="nav-link active" href="/workshop" aria-current="page">Майстерня</a></nav>
+      <div id="connection" class="connection"><span class="status-dot"></span><span>Підключення…</span></div>
+    </header>
+    <main class="workshop-main">
+      <section class="workshop-hero">
+        <div class="workshop-kicker">ЗОШИТ АВТОРСЬКИХ СТРАТЕГІЙ</div>
+        <div class="workshop-title-row"><div><h1>Майстерня стратегій</h1><p>Імпортуй точний рецепт, навчися на локальному прогоні, внеси нову версію та зафіксуй правила перед ареною.</p></div><a class="arena-shortcut" href="/arena">До арени <span aria-hidden="true">↗</span></a></div>
+        <ol class="workflow" aria-label="Етапи роботи"><li><b>1</b><span>Авторський рецепт</span></li><li><b>2</b><span>Безкоштовний прогін</span></li><li><b>3</b><span>Нова версія</span></li><li><b>4</b><span>Фіксація → Арена</span></li></ol>
+        <div class="workflow-prompt-action"><button id="copy-prompt-top" class="quiet-action" type="button">Копіювати завдання автору</button></div>
+        <div class="sandbox-note"><span class="sandbox-stamp">LOCAL</span><p><b>Локальний RULES_ONLY прогін не викликає Jev і коштує $0.</b> Він використовує синтетичні або записані публічні дані. Нижче є окремий біржовий OKX Demo тест із Jev та його лімітом. Результат проби не доводить майбутній прибуток чи перевагу автора.</p></div>
+      </section>
+
+      <div id="notice" class="workshop-notice" role="status" hidden></div>
+      <section id="parallel-research" class="sandbox-note" aria-label="Дослідження під час бою">
+        <span class="sandbox-stamp">RESEARCH</span><div><b>Наступна версія під час бою</b>
+          <p id="parallel-research-status">Створи копію бойової версії, перевір її на спільних даних та OKX Demo. Поточний рецепт на арені залишається зафіксованим. Один Demo-тест за раз; зміни потрапляють лише в наступний бій.</p>
+          <p>Модель-автор аналізує звіти й створює рецепт у своєму чаті. Автоматичного навчання чи виклику авторської моделі тут немає. Важкі офлайн дослідження виконуються по черзі.</p>
+        </div>
+      </section>
+      <div class="workshop-layout">
+        <aside class="version-rail" aria-labelledby="versions-heading">
+          <div class="rail-head"><div><span class="small-eyebrow">ІСТОРІЯ РЕЦЕПТІВ</span><h2 id="versions-heading">Версії</h2></div><button id="refresh-state" class="small-action" type="button" aria-label="Оновити стан майстерні">↻</button></div>
+          <div id="version-list" class="version-list"><p class="subtle">Завантажуємо версії…</p></div>
+          <button id="new-version" class="new-version-button" type="button">＋ Додати рецепт</button>
+          <div class="rail-foot"><span id="version-count">— версій</span><span>Незмінні записи</span></div>
+        </aside>
+
+        <div class="workshop-main-column">
+          <section class="recipe-card" aria-labelledby="recipe-heading">
+            <div class="panel-heading"><div><span class="small-eyebrow">ІМПОРТ · ПЕРЕГЛЯД · НОВА ВЕРСІЯ</span><h2 id="recipe-heading">Паспорт стратегії</h2></div><span id="composer-parent" class="revision-tag">Нова стратегія</span></div>
+            <div class="import-tools"><label class="file-button">Відкрити JSON-файл<input id="recipe-file" type="file" accept="application/json,.json"></label><button id="fill-template" class="quiet-action" type="button">Заповнити навчальний приклад Codex</button><button id="export-recipe" class="quiet-action" type="button" disabled>Експортувати вибрану</button></div>
+            <label for="recipe-json" class="field-label">Формальний рецепт · JSON</label>
+            <textarea id="recipe-json" class="recipe-json" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="recipe-help" placeholder="Відкрий JSON або встав повний паспорт стратегії…"></textarea>
+            <p id="recipe-help" class="field-help">Зберігається нова незмінна версія. Виправ помилку в цьому полі та повтори дію — текст залишиться тут.</p>
+            <label class="confirmation-row"><input id="confirm-match" type="checkbox"><span>Підтверджую, що формальні правила точно відтворюють поданий автором рецепт. Непідтримані вимоги не виконуються.</span></label>
+            <div class="recipe-actions"><button id="clone-version" class="quiet-action" type="button" disabled>Створити нову версію з вибраної</button><button id="save-version" class="primary-action" type="button">Зберегти як нову чернетку</button></div>
+            <p id="recipe-error" class="inline-error" role="alert" hidden></p>
+            <div id="workshop-tools-host"></div>
+          </section>
+
+          <section class="training-card" aria-labelledby="training-heading">
+            <div class="panel-heading"><div><span class="small-eyebrow">ЛОКАЛЬНИЙ ТЕСТ · RULES ONLY</span><h2 id="training-heading">Навчальний прогін</h2></div><span class="cost-chip">$0 AI · без Jev</span></div>
+            <p class="section-intro">Перевір цю точну версію на одному з доступних наборів. Проба не змінює рецепт і не надсилає ордери.</p>
+            <div class="training-form"><label for="dataset-select">Дані для проби</label><select id="dataset-select" disabled><option>Завантажуємо набори…</option></select><div id="dataset-description" class="dataset-description">Опис даних з’явиться після завантаження.</div><label for="trial-budget">Стартовий бюджет симуляції</label><div class="budget-row"><input id="trial-budget" type="number" min="25" max="1000" step="25" value="100"><span>USDT · лише в симуляції</span></div><button id="run-training" class="primary-action" type="button" disabled><span aria-hidden="true">▶</span> Запустити безкоштовну пробу</button></div>
+            <div class="training-boundary"><b>Локальна перевірка формальних правил</b><span>Короткий пробний прогін · без викликів моделей · $0 Jev · без біржових операцій.</span></div>
+            <details class="contract-detail"><summary>Доступні ознаки, межі та середовище проби</summary><dl id="contract-runtime" class="contract-list"><div><dt>Умови проби</dt><dd>Завантажуються…</dd></div></dl></details>
+          </section>
+          <section class="exchange-card demo-exchange-card" aria-labelledby="demo-exchange-heading">
+            <div class="panel-heading"><div><span class="small-eyebrow">OKX DEMO · ОКРЕМИЙ РАХУНОК</span><h2 id="demo-exchange-heading">Проба на біржовому демо</h2></div><span class="exchange-chip">НЕ РЕАЛЬНІ КОШТИ</span></div>
+            <p class="section-intro">Один зафіксований рецепт, одна ізольована demo-підсистема та реальні заявки в середовищі OKX Demo. Це окремо від локальної безкоштовної проби.</p>
+            <div class="demo-probe-tools"><button id="add-demo-probe" class="quiet-action" type="button" disabled>Додати рецепт перевірки циклу</button><p>Технічний рецепт лише для OKX Demo; не переноситься на арену. Один цикл · ізольований 1x · до 2 покупок по ≤10 USDT (разом ≤20 USDT). Jev перевіряє утримання від 30 с; докупівля від 60 с можлива й у мінусі лише в цьому тесті. Закриття від 120 с після входу; до 5 хв. Jev може відхилити покупку. Stop блокує нові входи й запитує закриття фактичного залишку. Кнопка лише зберігає рецепт — він очікує запуску власником.</p></div>
+            <div class="exchange-form">
+              <label for="demo-version">Версія рецепта</label><select id="demo-version" disabled><option>Завантажуємо версії…</option></select>
+              <label for="demo-execution-mode">Що перевіряємо</label><select id="demo-execution-mode"><option value="shared_jev" selected>Стратегія · з Jev</option><option value="rules_only" disabled>RULES_ONLY · Jev SHADOW</option><option value="demo_mechanics" disabled>Механіка OKX Demo · без Jev</option></select>
+              <div id="demo-mode-help" class="exchange-account-help" role="status">Jev підтверджує вхід. Режим механіки без Jev доступний лише для незмінених закріплених Demo-рецептів: V8 short / partial / tail і R2 ETH post-only.</div>
+              <label for="demo-account">Підсистема OKX</label><select id="demo-account" disabled><option>Завантажуємо профілі…</option></select>
+              <div class="exchange-account-help">Використовується лише профіль OKX Demo. Стратегія одна, біржовий акаунт окремий від live-профілів.</div>
+              <div class="exchange-inline-controls"><label for="demo-budget">Бюджет на бота · USDT</label><input id="demo-budget" type="number" min="25" max="500" step="25" value="100"><label for="demo-duration">Час для нових входів</label><select id="demo-duration"><option value="300">5 хвилин</option><option value="900" selected>15 хвилин</option><option value="1800">30 хвилин</option><option value="3600">1 година</option><option value="7200">2 години</option><option value="18000">5 годин</option><option value="86400">24 години</option></select></div>
+              <div class="exchange-actions"><button id="demo-check" class="quiet-action" type="button">Перевірити доступ · лише читання</button><button id="demo-start" class="primary-action" type="button" disabled>Запустити OKX Demo</button></div>
+              <p id="demo-profile-status" class="exchange-status" role="status">Перевір статус профілю.</p>
+              <p id="demo-budget-status" class="exchange-budget-status">Завантажуємо сукупний ліміт Jev…</p>
+            </div>
+            <p class="v6-admission-note">Після завершення часу нових входів і докупівель немає. Відкрита позиція завершується за власними правилами; до дедлайну можливі повторні цикли. Технічний Demo-рецепт залишається одним фіксованим тестом.</p><div id="demo-season" class="exchange-season" hidden></div>
+            <div id="demo-history" class="exchange-history"></div>
+            <p class="exchange-boundary"><b>Це біржовий demo-режим.</b> Він може створювати й закривати демонстраційні заявки в OKX Demo. Справжній live-рахунок та його баланс не використовуються. Jev має окремий сукупний м’який поріг $0.01; один запит може його перевищити.</p>
+          </section>
+        </div>
+
+        <aside class="detail-rail" aria-label="Результати та фіксація">
+          <section class="selected-card" aria-labelledby="selected-heading"><div class="panel-heading compact-heading"><div><span class="small-eyebrow">ОБРАНА ВЕРСІЯ</span><h2 id="selected-heading">Ще не вибрано</h2></div><span id="version-status" class="status-chip">—</span></div><div id="selected-summary" class="selected-summary"><p class="subtle">Вибери рецепт зі списку версій або створи нову чернетку.</p></div><div id="selected-meta" class="selected-meta"></div><div class="selected-actions"><button id="freeze-version" class="freeze-button" type="button" disabled>Зафіксувати правила</button><button id="promote-version" class="promote-button" type="button" disabled>Додати в PAPER-арену</button></div><p class="freeze-note">Фіксація доступна після щонайменше одного завершеного тесту цієї версії. Прибуток не є умовою. Просування лише реєструє рецепт в арені й не запускає сезон.</p></section>
+          <section class="trials-card" aria-labelledby="trials-heading"><div class="panel-heading compact-heading"><div><span class="small-eyebrow">ЗВІТИ · ЗВОРОТНИЙ ЗВ’ЯЗОК</span><h2 id="trials-heading">Пробні прогони</h2></div><span id="trial-count" class="count-chip">0</span></div><div id="trial-list" class="trial-list"><p class="subtle">Обери версію, щоб побачити її прогони.</p></div></section>
+          <div class="author-prompt-card"><div><span class="small-eyebrow">ДЛЯ АВТОРА АБО МОДЕЛІ</span><h3>Однакове завдання для кожного автора</h3><p>Завантажити точний prompt і формат відповіді з контракту майстерні.</p></div><div class="prompt-actions"><button id="copy-prompt" type="button" class="quiet-action">Копіювати завдання</button><button id="download-prompt" type="button" class="quiet-action">Завантажити</button></div><small>Ім’я моделі, версію та первинний текст відповіді вводить автор. Майстерня не видає рецепт за відповідь ChatGPT, Claude чи Gemini.</small></div>
+        </aside>
+      </div>
+      <footer class="workshop-footer"><span>Jev Trading Lab · Майстерня</span><span>Локальні проби — не прогноз прибутку</span><a href="/arena">До PAPER-арени ↗</a></footer>
+    </main>
+  </div>
+
+  <dialog id="trial-dialog" class="trial-dialog" aria-labelledby="trial-title"><div class="trial-dialog-head"><div><span class="small-eyebrow">ЗВІТ ПРОБНОГО ПРОГОНУ · $0 AI</span><h2 id="trial-title">Деталі проби</h2><div class="feedback-actions"><button id="copy-feedback" type="button" class="quiet-action">Копіювати звіт автору</button><button id="download-feedback" type="button" class="quiet-action">Завантажити повний JSON</button></div></div><button id="close-trial" class="dialog-close" type="button" aria-label="Закрити звіт">×</button></div><div id="trial-detail" class="trial-detail"></div></dialog>
+</body>
+</html>

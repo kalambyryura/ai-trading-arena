@@ -1,0 +1,13 @@
+# AI Trading Arena needs Python 3.12. Install with:
+#   Windows:        py -3.12 -m pip install -r requirements.txt
+#   macOS / Linux:  python3.12 -m pip install -r requirements.txt
+# Apart from these two packages, the code uses only the Python standard library.
+# Tested with numpy 2.5.4 and Pillow 13.0.0 on Python 3.12.10; older versions were not tested.
+
+# Required: the official evaluator for format-4 recipes (tools/team_eval.py -> tools/team_eval_v4.py),
+# the Judge's gate tools (team/judge/tools/), tools/author_backtest.py, tools/v4_conformance.py and 25 of the 118 test modules.
+numpy>=2.5.4
+
+# Optional: only the local static-site export (tools/public_site.py) uses it, to convert large images to WebP.
+# Without it the PNG files are copied as they are and one test is skipped. Delete this line if you do not need it.
+Pillow>=13.0.0

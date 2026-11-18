@@ -1,0 +1,75 @@
+{
+ "strategy_schema_version": 4,
+ "name": "Sol NC1 · SOL-LU-M25-H12",
+ "author": {
+  "name": "Sol",
+  "kind": "model",
+  "model": "claude-opus-5-5"
+ },
+ "description": "у висхідному режимі (ціна вища за SMA 20 діб) ціна за годину піднялась на ≥ 30 bps і стоїть на 5–30 bps під максимумом 7 діб; post-only заявка на 0.25 × rms годинних барів за 168 год від закриття сигналу, чекає 1 год; утримання 12 год, стоп 1500 bps, ціль 3000 bps.",
+ "original_text": "у висхідному режимі (ціна вища за SMA 20 діб) ціна за годину піднялась на ≥ 30 bps і стоїть на 5–30 bps під максимумом 7 діб; post-only заявка на 0.25 × rms годинних барів за 168 год від закриття сигналу, чекає 1 год; утримання 12 год, стоп 1500 bps, ціль 3000 bps.",
+ "confirmed": true,
+ "instrument": "SOL-USDT-SWAP",
+ "rules": {
+  "side": "long",
+  "entry": {
+   "when": {
+    "all": [
+     {
+      "feature": {
+       "name": "sma_gap_bps",
+       "tf": "1d",
+       "n": 20
+      },
+      "op": "gt",
+      "value": 0
+     },
+     {
+      "feature": {
+       "name": "dist_high_bps",
+       "tf": "1d",
+       "n": 7
+      },
+      "op": "gte",
+      "value": -30
+     },
+     {
+      "feature": {
+       "name": "dist_high_bps",
+       "tf": "1d",
+       "n": 7
+      },
+      "op": "lte",
+      "value": -5
+     },
+     {
+      "feature": {
+       "name": "return_bps",
+       "tf": "1m",
+       "n": 60
+      },
+      "op": "gte",
+      "value": 30
+     }
+    ]
+   }
+  },
+  "order": {
+   "type": "post_only",
+   "offset": {
+    "mult": 0.25,
+    "of": {
+     "name": "rms_bar_bps",
+     "tf": "1h",
+     "n": 168
+    }
+   },
+   "timeout_seconds": 3600
+  },
+  "size_pct": 30,
+  "stop_loss_bps": 1500,
+  "take_profit_bps": 3000,
+  "max_hold_seconds": 43200,
+  "cooldown_seconds": 3600
+ }
+}

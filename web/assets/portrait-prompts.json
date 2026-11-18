@@ -1,0 +1,16 @@
+[
+  [
+    "human",
+    "Create one premium watercolor and charcoal sketch portrait cutout of EXACTLY the orange-sweater young human from the attached pose sheet, matching the warm cream-paper coliseum reference style. Chest-up only, large readable friendly black-haired face, right hand in a small confident boxing guard, clear expressive eyes, simple warm orange sweater, hand-drawn pencil grain and restrained watercolor, no text or labels or frame or card or shadow background. Place the upper body centered and fill most of a square canvas; transparent background. This is the participant details portrait for a real interactive frontend, not a screenshot of an app.",
+    [
+      "web/assets/human-poses.png"
+    ]
+  ],
+  [
+    "robot",
+    "Create one premium watercolor and charcoal sketch portrait cutout of EXACTLY the friendly blue robot from the attached pose sheet, matching a warm cream-paper illustrated coliseum. Chest-up only, large expressive rounded square face and tiny antenna, one glove lifted in relaxed boxing guard, blue painted metal body, charcoal outline, soft pencil grain, restrained watercolor and slight human charm. No text, no label, no frame, no UI, no background or floor. Fill most of a square canvas centered, transparent background. This is a participant details portrait for an interactive frontend.",
+    [
+      "web/assets/robot-poses.png"
+    ]
+  ]
+]

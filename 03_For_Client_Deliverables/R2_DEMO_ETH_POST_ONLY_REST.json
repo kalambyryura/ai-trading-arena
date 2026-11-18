@@ -1,0 +1,43 @@
+{
+  "strategy_schema_version": 4,
+  "name": "R2 DEMO ONLY · ETH post-only rest and timeout",
+  "author": {
+    "name": "Platform diagnostics",
+    "kind": "example",
+    "model": "",
+    "submitted_at": "2026-10-31",
+    "prompt": "Owner-started OKX Demo execution probe of the R2 post-only path on ETH-USDT-SWAP. Not an author strategy or profitability test.",
+    "attempts": 1,
+    "edited_by": ""
+  },
+  "description": "Demo-only operating procedure: one ETH short as a post-only order 100 bps above the decision bar's close, meant to rest unfilled past the 5-minute admission window and be cancelled at its 6-minute timeout. Keep as an unpromoted draft.",
+  "original_text": "In the owner's OKX Demo workshop, allocate 100 USDT and admit entries for 300 seconds. At the first visible closed minute with a known 1-minute return, place one ETH-USDT-SWAP short of 30% allocation as a post-only limit 100 bps above that bar's close, rounded up to the tick; never send it if it would cross the book. The order is expected not to fill: it rests for at most 360 seconds, also after the admission window closes, then it is cancelled and no second order follows. Should it fill, the hosted stop protects the actual quantity and the position exits by stop 50 bps, target 40 bps from the minute after the fill, or 300 seconds of holding; owner Stop, risk and recovery keep priority. This is a diagnostic demo probe of the resting, cutoff and timeout path, not evidence of profit and not a strategy for the Live arena.",
+  "confirmed": true,
+  "instrument": "ETH-USDT-SWAP",
+  "rules": {
+    "side": "short",
+    "entry": {
+      "when": {
+        "feature": {
+          "name": "return_bps",
+          "tf": "1m",
+          "n": 1
+        },
+        "op": "gt",
+        "value": -1000000
+      }
+    },
+    "order": {
+      "type": "post_only",
+      "offset": {
+        "bps": 100
+      },
+      "timeout_seconds": 360
+    },
+    "stop_loss_bps": 50,
+    "take_profit_bps": 40,
+    "max_hold_seconds": 300,
+    "cooldown_seconds": 600,
+    "size_pct": 30
+  }
+}

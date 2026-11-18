@@ -1,0 +1,21 @@
+# Local data, runs and ledgers
+runtime/
+data/
+vault/
+
+# Secrets: keys live only in local files
+.env*
+LocalSettings/
+*.private.zip
+
+# Python and tools
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db

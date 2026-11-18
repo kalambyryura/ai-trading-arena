@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="panel-token" content="__PANEL_TOKEN__">
+  <title>Jev · Trading Lab</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+  <script src="/history.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="brand" href="/" aria-label="Jev Trading Lab"><span class="brand-icon">j.</span><span>Jev <span class="brand-light">/ Trading Lab</span></span></a>
+      <a class="connection" href="/arena">Арена стратегій · PAPER ↗</a>
+      <a class="connection" href="/workshop">Майстерня ↗</a>
+      <span class="connection" id="connection"><span class="dot"></span>Локальне підключення</span>
+    </header>
+
+    <main>
+      <div class="eyebrow">OKX · BTC / USDT PERPETUAL</div>
+      <div class="heading-row"><div><h1>Спостерігає. Вирішує.<br>Керує позицією.</h1><p class="intro">Jev оцінює вхід, утримання та докупівлю.<br class="desktop-break"> Ти можеш зупинити цикл і закрити позицію.</p></div><span class="live-badge"><span></span>Реальні кошти</span></div>
+
+      <section class="account-strip" aria-label="Баланс і загальні витрати"><div><span>Баланс торгового акаунта</span><strong id="equity">— <small>USD</small></strong></div><div><span>Доступно для торгівлі</span><strong id="available">— <small>USDT</small></strong></div><div><span>Усього витрачено на Jev</span><strong id="total-jev">— <small>USD</small></strong></div><div class="balance-action"><button id="refresh-balance" type="button">↻ Оновити баланс</button><small id="balance-date">Лише читання OKX</small></div></section>
+
+      <div class="bot-heading"><span class="bot-mark">V3</span><h2>Jev · очікування та керована позиція</h2><span class="muted">Очікування + позиція · до 5 хвилин</span></div>
+
+      <section class="control-grid" aria-label="Керування ботом">
+        <div class="launch-card">
+          <div class="card-top"><span class="small-label">ВХІД + ДОКУПІВЛЯ</span><span class="mini-badge">Ізольована маржа</span></div>
+          <div class="parameters"><div><strong>≤ 30 <small>USDT</small></strong><span>Загальний номінал</span></div><div><strong>1<span class="times">×</span></strong><span>Плече</span></div><div><strong>3 <small>× ≤ 10</small></strong><span>Ліміт покупок, USDT</span></div></div>
+          <div class="strategy-limits"><span>Позиція · перевірка 5 с</span><span>Вхід / Jev · 30 с</span><span>Ціна виходу · −0,20% / +0,35%</span></div>
+          <button id="play" class="play-button" type="button" disabled><span class="play-icon" aria-hidden="true">▶</span><span id="play-label">Підключення…</span><span class="button-arrow" aria-hidden="true">↗</span></button>
+          <button id="stop" class="stop-button" type="button" disabled>■ Стоп і закрити позицію</button>
+          <p class="launch-hint" id="launch-hint">Завантажуємо локальний стан бота.</p>
+          <div class="security-note"><span aria-hidden="true">●</span> Ключі залишаються на комп’ютері</div>
+        </div>
+
+        <div class="status-card">
+          <div class="card-top"><h2>Стан циклу</h2><span class="status-tag" id="phase-tag">—</span></div>
+          <div class="status-title" id="status-title">Читаємо журнал</div>
+          <p id="status-description" class="muted">Жодного нового запуску.</p>
+          <ol class="steps" id="steps"><li data-step="0"><span>1</span>Перевірки</li><li data-step="1"><span>2</span>Jev · вхід</li><li data-step="2"><span>3</span>Купівля</li><li data-step="3"><span>4</span>Перевірки</li><li data-step="4"><span>5</span>Jev · рішення ↻</li><li data-step="5"><span>6</span>Закриття</li></ol>
+          <p class="loop-note">Немає входу: 2 → 1 ↻ · Утримати → повторний аналіз · Докупити → перевірки й купівля · Стоп / закрити → 6</p>
+          <div class="status-foot"><span>Залишок позиції</span><strong id="remaining">—</strong></div>
+          <p class="error" id="error" role="alert" hidden></p>
+        </div>
+      </section>
+
+      <section class="monitor-card" aria-label="Поточний цикл">
+        <div class="section-heading"><h2>Поточний цикл</h2><span id="monitor-stamp" class="muted">Очікує запуску V3</span></div>
+        <div class="monitor-metrics"><div><span>Оцінка PnL при закритті</span><strong id="live-pnl">—</strong><small>USDT · без funding, Jev і прослизання</small></div><div><span>Час у позиції</span><strong id="held">—</strong><small>V3: до 300 с разом з очікуванням входу</small></div><div><span>Покупки</span><strong id="entries-count">—</strong><small>Докупівля лише від +0,10%</small></div><div><span>Jev за цей цикл</span><strong id="cycle-cost">—</strong><small id="cycle-calls">До 11 запитів · поріг $0,005</small></div></div>
+        <div id="position-chart" class="position-chart" role="img" aria-label="Динаміка поточного циклу"></div>
+        <div class="decision-line"><span>Останнє рішення</span><strong id="latest-decision">—</strong><span id="close-reason"></span></div>
+        <details><summary>Рішення Jev і спостереження ринку</summary><ol id="decisions" class="decision-list"></ol></details>
+      </section>
+
+      <section class="result-section" aria-label="Останній результат">
+        <div class="section-heading"><h2>Останній результат</h2><span id="result-date" class="muted">З локального журналу</span></div>
+        <div class="result-grid">
+          <article class="metric"><span>Результат після комісій</span><strong id="pnl">—</strong><small>USDT · без funding і вартості Jev</small></article>
+          <article class="metric"><span>Торгові комісії</span><strong id="fees">—</strong><small>USDT · купівля + закриття</small></article>
+          <article class="metric"><span>Вартість Jev за цикл</span><strong id="jev-cost">—</strong><small>USD · за відповідями провайдера</small></article>
+          <article class="metric"><span>Відповідь Jev</span><strong id="jev-latency">—</strong><small id="jev-choice">Технічна перевірка сценарію</small></article>
+        </div>
+        <div class="trade-detail"><span>Середній вхід <strong id="buy-price">—</strong></span><span class="trade-arrow" aria-hidden="true">→</span><span>Середній вихід <strong id="sell-price">—</strong></span><span class="trade-size" id="trade-size">—</span></div>
+      </section>
+
+      <section class="chart-card" aria-label="Накопичений PnL експериментів"><div class="section-heading"><div><h2>Динаміка всіх експериментів</h2><p class="muted chart-subtitle">V1, V2 та V3 · після торгових комісій</p></div><div class="chart-total"><strong id="total-pnl">—</strong><small>USDT</small></div></div><div id="chart" class="chart" role="img" aria-label="Графік ще не завантажено"></div><div class="chart-foot"><span>Без funding і вартості Jev</span><span id="series-budget">Серія ручних тестів</span></div></section>
+
+      <section class="history-section"><div class="section-heading"><div><h2>Історія тестів</h2><p class="muted history-hint">Натисни на тест, щоб переглянути всі записані кроки.</p></div><span class="muted" id="history-count">—</span></div><div class="table-wrap"><table><thead><tr><th>Тест / журнал ↗</th><th>Час</th><th>Статус</th><th class="numeric">Обсяг, BTC</th><th class="numeric">Результат, USDT</th></tr></thead><tbody id="history"></tbody></table></div></section>
+
+      <div class="note"><span class="note-symbol" aria-hidden="true">i</span><p>Експериментальна стратегія; прибутковість ще не перевірено. Пороги −0,20% / +0,35% — локальні тригери за ціною, до комісій; виконання може відрізнятися. «Стоп» чекає поточну відповідь API та закриває фактичний обсяг. Не вимикай ПК під час циклу: біржового stop-loss немає, збій зв’язку може залишити позицію відкритою. Не торгуй цією парою ззовні під час роботи бота.</p></div>
+    </main>
+    <footer><span>Jev / Trading Lab</span><span>Працює лише на 127.0.0.1 · без автозапуску торгівлі</span></footer>
+  </div>
+  <dialog id="history-dialog" aria-labelledby="history-title">
+    <div class="journal-header"><div><p class="eyebrow">ЖУРНАЛ ЦИКЛУ</p><h2 id="history-title">Історія кроків</h2></div><button type="button" id="history-close" aria-label="Закрити журнал" autofocus>✕</button></div>
+    <p id="history-summary" class="journal-summary"></p>
+    <p id="history-note" class="journal-note"></p>
+    <div class="journal-filter"><label for="history-step">Крок</label><select id="history-step"><option value="all">Усі кроки</option><option value="1">1 · Перевірки перед входом</option><option value="2">2 · Jev — вхід</option><option value="3">3 · Купівля / докупівля</option><option value="4">4 · Перевірки позиції</option><option value="5">5 · Jev — продовження</option><option value="6">6 · Закриття / завершення</option></select><span id="history-event-count"></span></div>
+    <ol id="history-events" class="timeline" aria-label="Події циклу"></ol>
+    <p id="history-error" class="error" role="alert" hidden></p>
+  </dialog>
+</body>
+</html>

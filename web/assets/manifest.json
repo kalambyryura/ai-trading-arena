@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-01",
+  "reference": "03_For_Client_Deliverables/design/arena_coliseum_2026_10_01/coliseum-concept-v1.png",
+  "assets": [
+    {
+      "file": "coliseum-floor.png",
+      "provider": "native ImageGen",
+      "original_filename": "exec-c9ff89cc-44fe-4867-b6b2-cf438ac0c38b.png",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2966906,
+      "sha256": "23d76998e7f7c37f90583e61abfc663d1a6eb7ff43075b70bc8606def44137fe",
+      "modified": false
+    },
+    {
+      "file": "human-poses.png",
+      "provider": "native ImageGen",
+      "original_filename": "exec-d54f3bdb-afca-49e1-a30e-414489fe7715.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1274017,
+      "sha256": "9232c88cc76250a854e3d8c74c7accc47d671eaae4ec0cafd1f69ba6c7d6a81a",
+      "modified": false
+    },
+    {
+      "file": "robot-poses.png",
+      "provider": "native ImageGen",
+      "original_filename": "exec-ad201ac8-cff5-4b61-92f3-f3913b8374d3.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 1041131,
+      "sha256": "083b55538c8211cbcb5c2a0060cd560aecd8f256e0e31227c6c1399f258bc81e",
+      "modified": false
+    },
+    {
+      "file": "cash.png",
+      "provider": "native ImageGen",
+      "original_filename": "exec-5f810871-bd22-45a7-b1b1-82a338c10f13.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2550001,
+      "sha256": "28c9c4029e6f908e664defec931b36cced0d8e12bb03f03a5d93e4d3d2a5c0db",
+      "modified": false
+    },
+    {
+      "file": "human-portrait.png",
+      "provider": "native ImageGen",
+      "original_filename": "exec-47f497e5-462a-4f41-98c3-abb7f95be63e.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2334723,
+      "sha256": "2fc53b58868bdad8b19cbdeeb7e9b7ee9eaa821257a696a71da7a34acbd6fee5",
+      "modified": false
+    },
+    {
+      "file": "robot-portrait.png",
+      "provider": "native ImageGen",
+      "original_filename": "exec-aa64387f-0d0c-4908-b3f5-727ab4866d5f.png",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 2270338,
+      "sha256": "5f7e1d8f6f69185f2793b3d66872418385aa5d2fb850c6797187cb62dc5db125",
+      "modified": false
+    }
+  ]
+}

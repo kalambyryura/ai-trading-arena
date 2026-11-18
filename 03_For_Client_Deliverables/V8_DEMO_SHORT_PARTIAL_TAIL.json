@@ -1,0 +1,45 @@
+{
+  "strategy_schema_version": 2,
+  "name": "V8 DEMO ONLY · short / partial / tail",
+  "author": {
+    "name": "Codex diagnostics",
+    "kind": "example",
+    "model": "",
+    "submitted_at": "2026-10-02",
+    "prompt": "Owner-started ordinary OKX Demo execution probe. Not an author strategy or profitability test.",
+    "attempts": 1,
+    "edited_by": ""
+  },
+  "description": "Demo-only operating procedure: short, partial reduction window, residual after admission cutoff, authored exit. Keep as an unpromoted draft.",
+  "original_text": "In the owner's OKX Demo workshop, allocate100 USDT and admit entries for300 seconds. With fresh known data and spread <=1.5bps, ask the normal Jev entry veto for one short of30% allocation, rounded down to the actual exchange lot. A veto remains a veto. No adds. With actual position age >=120 and <180 seconds, reduce50% of the then-owned contracts, rounded down, at most once per position/bar; keep the residual. Depending on fill time relative to the minute boundary, this window may admit two partial actions on different bars. Do not force a partial if it is below the lot. Continue management after the admission cutoff, with no new entries/adds. At a new completed minute with position age >=420 seconds, fully reduce the owned remainder. Max hold is null; SL200bps, TP600bps and ownerStop/risk/recovery retain priority. This is a diagnostic demo probe, not evidence of profit and not a strategy for the Live arena. Root does not freeze or promote it.",
+  "confirmed": true,
+  "rules": {
+    "side": "short",
+    "size_pct": 30,
+    "max_entries": 1,
+    "add_after_bps": 20,
+    "stop_loss_bps": 200,
+    "take_profit_bps": 600,
+    "max_hold_seconds": null,
+    "cooldown_seconds": 600,
+    "max_spread_bps": 1.5,
+    "entry": {
+      "short": {
+        "setup": null,
+        "confirm": {"feature": "spread_bps", "op": "lte", "value": 1.5},
+        "invalidate": null,
+        "expiry_bars": null
+      }
+    },
+    "exit": {"feature": "position_age_seconds", "op": "gte", "value": 420},
+    "add_when": null,
+    "cost_checkpoint": null,
+    "reduce_when": {
+      "all": [
+        {"feature": "position_age_seconds", "op": "gte", "value": 120},
+        {"feature": "position_age_seconds", "op": "lt", "value": 180}
+      ]
+    },
+    "reduce_pct": 50
+  }
+}

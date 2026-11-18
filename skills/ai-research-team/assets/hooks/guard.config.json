@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "name": "team-guard",
+  "output": "exit2",
+  "onInternalError": "allow",
+  "maxCommandChars": 100000,
+  "maxHeredocs": 64,
+  "caseInsensitivePaths": "auto",
+  "roleMarker": ".team-role",
+  "blockedSuffix": "If this action is legitimate, write BLOCKED to the coordinator with the exact command and why; do not work around the guard.",
+  "denialLog": "{main}/runtime/team/guard_denials.jsonl",
+  "paths": {
+    "main": "<MAIN_CHECKOUT>",
+    "worktreesRoot": "{main}/.claude/worktrees",
+    "vault": "<SEALED_HOLDOUT_DIR>",
+    "dataStore": "<SHARED_DATA_DIR>",
+    "approvalFlag": "{main}/runtime/team/paid_enabled.flag",
+    "ledgers": "{main}/runtime/paid_research",
+    "codeDirs": ["src", "trading_lab", "tools", "tests", "web", "deployment"],
+    "codeExtensions": ["py", "pyw", "js", "cjs", "mjs", "ts", "ps1", "psm1", "sh", "bash", "cmd", "bat", "ipynb"]
+  },
+  "secretPaths": {
+    "patterns": [
+      "(?<![A-Za-z0-9_$])\\.env(?![A-Za-z0-9_])(?:\\.[A-Za-z0-9_-]+)*",
+      "(?<![A-Za-z0-9_$])\\.envrc\\b",
+      "(^|[\\\\/\\s\"'~=])(local-secrets|LocalSettings)([\\\\/]|\\b)",
+      "\\.private\\.zip\\b",
+      "\\.git-credentials\\b",
+      "(^|[\\\\/\\s\"'~=])(\\.netrc|_netrc)\\b",
+      "(^|[\\\\/\\s\"'~=])\\.ssh([\\\\/]|\\s|$)",
+      "\\.(pem|p12|pfx)\\b",
+      "\\bid_(rsa|ecdsa|ed25519)\\b"
+    ],
+    "exceptions": ["^\\.env(\\.[A-Za-z0-9_-]+)?\\.(example|sample|template)$"]
+  },
+  "git": {
+    "pushRemotes": ["origin"],
+    "protectedBranches": ["main", "master"],
+    "roleBranchPattern": "team/{role}"
+  },
+  "commandRules": [
+    {
+      "id": "owner.live-flag",
+      "pattern": "(\\.(py|js|mjs|cjs|ts|sh|ps1)\\b|\\s-m\\s+[\\w.]+)[^\\n]*\\s--(live|web-run)\\b",
+      "why": "live entrypoints are owner-only; agents use --check, dry runs or fake transports",
+      "on": ["shell", "browser"],
+      "profiles": ["*"]
+    },
+    {
+      "id": "owner.paid-once",
+      "pattern": "\\s--(paid-once|owner-paid)\\b",
+      "why": "one-shot paid or real-money flags are owner-only",
+      "on": ["shell", "browser"],
+      "profiles": ["*"]
+    },
+    {
+      "id": "owner.run-control",
+      "pattern": "/api/(runs?|bots?|exchange|arena)/(start|stop|resume)\\b|/api/(play|stop)\\b",
+      "why": "Start, Stop and Resume of runs are owner-only (Stop closes positions, so it moves money too)",
+      "on": ["shell", "browser"],
+      "profiles": ["*"]
+    },
+    {
+      "id": "owner.launchers",
+      "pattern": "\\b(START|STOP|RESTART|INSTALL|UPDATE|IMPORT|EXPORT|REISSUE)_[A-Z0-9_]+\\.(cmd|bat|ps1|sh)\\b|\\b(CHECK|NOTIFIER)_[A-Z0-9_]+\\.(cmd|bat)\\b",
+      "why": "owner launcher scripts are owner-only",
+      "on": ["shell", "browser"],
+      "profiles": ["*"]
+    },
+    {
+      "id": "owner.prod-restart",
+      "pattern": "\\brestart_(production|panel)\\b",
+      "why": "restarting production is owner-only",
+      "on": ["shell", "browser"],
+      "profiles": ["*"]
+    },
+    {
+      "id": "owner.venue-writes",
+      "pattern": "/(trade/(order|orders|batch-orders|cancel-order|cancel-batch-orders|amend-order|close-position|order-algo)|asset/(withdrawal|withdraw|transfer)|account/(set-leverage|set-position-mode))\\b",
+      "why": "private order, transfer and account-setting endpoints are owner-only; agents test executors with fake transports",
+      "on": ["shell", "browser"],
+      "profiles": ["*"]
+    },
+    {
+      "id": "code.venue-writes",
+      "pattern": "/(trade/(order|orders|batch-orders|cancel-order|cancel-batch-orders|amend-order|close-position|order-algo)|asset/(withdrawal|withdraw|transfer)|account/(set-leverage|set-position-mode))\\b",
+      "why": "only the platform engineer writes code that can place orders or move funds",
+      "on": ["code"],
+      "profiles": ["author", "staff", "judge"]
+    },
+    {
+      "id": "data.download",
+      "script": ["fetch_public_data", "public_history", "news_recorder"],
+      "why": "only the platform engineer (and the judge, into the sealed vault) downloads or records data; authors use the shared development store",
+      "on": ["shell"],
+      "profiles": ["author", "staff"]
+    },
+    {
+      "id": "paid.direct",
+      "pattern": "api\\.openai\\.com|api\\.anthropic\\.com|openrouter\\.ai|generativelanguage\\.googleapis\\.com|\\b(import|from)\\s+(openai|anthropic|openrouter|google\\.generativeai)\\b|\\brequire\\(\\s*['\"](openai|@anthropic-ai/sdk)['\"]",
+      "why": "paid model calls go only through the research harness and its ledger",
+      "on": ["shell", "code"],
+      "profiles": ["author", "staff", "judge"]
+    },
+    {
+      "id": "paid.legacy",
+      "script": ["jev_lab", "jev_gate_probe"],
+      "why": "old paid labs bypass the per-role ledger; use the research harness",
+      "on": ["shell"],
+      "profiles": ["author", "staff", "judge"]
+    },
+    {
+      "id": "paid.spender",
+      "pattern": "\\b(paid_research|jev_research)(\\.py)?\\b[^\\n|;&]*\\bask\\b",
+      "unless": "--(spender|author)(=|\\s+){role}(\\s|$)|\\s(--help|-h)(\\s|$)",
+      "why": "spend only your own paid budget: pass --spender (or --author) with your own role name",
+      "on": ["shell"],
+      "profiles": ["author"]
+    },
+    {
+      "id": "paid.none",
+      "pattern": "\\b(paid_research|jev_research)(\\.py)?\\b[^\\n|;&]*\\s--(paid|replay)\\b",
+      "why": "this role makes no paid calls",
+      "on": ["shell"],
+      "profiles": ["staff", "judge"]
+    },
+    {
+      "id": "paid.reconcile",
+      "pattern": "\\b(paid_research|jev_research)(\\.py)?\\b[^\\n|;&]*\\breconcile\\b",
+      "why": "reconciling a paid ledger is the coordinator's job",
+      "on": ["shell"],
+      "profiles": ["@marked"]
+    }
+  ],
+  "protectedPaths": [
+    {
+      "id": "protect.guard",
+      "paths": ["team/tools/guard.cjs", "team/tools/guard.config.json", ".claude/settings.json", ".claude/settings.local.json", ".claude/hooks"],
+      "why": "the guard and the hook wiring are changed only by the lead (relaxing an owner-only rule needs the owner's yes)",
+      "profiles": ["@marked"]
+    },
+    {
+      "id": "paid.flag",
+      "paths": ["{approvalFlag}"],
+      "why": "only the coordinator enables paid calls, for reviewed request specs",
+      "profiles": ["@marked"]
+    }
+  ],
+  "profiles": {
+    "lead": {
+      "description": "No role marker: the lead and the coordinator in the main checkout. Global rules only; integrator.",
+      "integrator": true,
+      "realBrowser": true
+    },
+    "engineer": {
+      "description": "Platform engineer: core code, shared tools, tests, data store and sealed-vault loading.",
+      "gitRestricted": true
+    },
+    "author": {
+      "description": "Strategy author in its own worktree.",
+      "readDeny": ["{vault}"],
+      "writeAllow": ["{worktree}", "{tmp}", "{home}/.claude/projects"],
+      "writeDeny": ["{dataStore}", "{ledgers}", "{otherWorktrees}"],
+      "allowAliasedPaths": false,
+      "gitRestricted": true,
+      "contentRules": true
+    },
+    "staff": {
+      "description": "Reviewer: no code changes, no paid calls, no sealed data.",
+      "readDeny": ["{vault}"],
+      "writeAllow": ["{worktree}", "{tmp}", "{home}/.claude/projects"],
+      "writeDeny": ["{dataStore}", "{ledgers}", "{code}"],
+      "allowAliasedPaths": false,
+      "gitRestricted": true,
+      "contentRules": true
+    },
+    "ops": {
+      "extends": "staff",
+      "description": "Operator of the always-on machine: like staff, and the only marked role that may drive the owner's real browser.",
+      "realBrowser": true,
+      "browserAllow": []
+    },
+    "judge": {
+      "description": "Judge: reads and refreshes the sealed vault, changes no code, makes no paid calls.",
+      "writeAllow": ["{worktree}", "{vault}", "{tmp}", "{home}/.claude/projects"],
+      "writeDeny": ["{dataStore}", "{ledgers}", "{code}"],
+      "allowAliasedPaths": false,
+      "gitRestricted": true,
+      "contentRules": true
+    }
+  },
+  "roles": {
+    "platform": "engineer",
+    "alpha": "author",
+    "beta": "author",
+    "reviewer": "staff",
+    "ops": "ops",
+    "judge": "judge"
+  },
+  "unmarkedProfile": "lead",
+  "unknownRoleProfile": "staff"
+}

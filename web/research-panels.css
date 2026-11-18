@@ -1,0 +1,66 @@
+/* Scope all rules: existing Coliseum floor, pose atlas, slots and owner controls are untouched. */
+.research-shell,.research-replay{--research-ink:#34372e;--research-muted:#696e60;--research-border:#dddccd;--research-accent:#59733d;color:var(--research-ink);font-family:Manrope,system-ui,sans-serif;font-size:14px}
+.research-shell{padding:24px;background:#fffef7;border:1px solid var(--research-border);border-radius:12px}
+.research-heading{display:flex;gap:18px;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+.research-shell h2{margin:0 0 8px;font-size:24px;line-height:1.25;font-weight:650}
+.research-shell p{line-height:1.55;margin:10px 0}
+.research-kicker{font-size:10px;letter-spacing:.14em;color:var(--research-accent);font-weight:750}
+.research-muted,.research-empty{color:var(--research-muted);font-size:12px}
+.research-intro{font-size:13px;color:var(--research-muted);max-width:78ch}
+.research-controls{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:12px 0 18px}
+.research-controls label{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:650}
+.research-shell select,.research-replay select{border:1px solid var(--research-border);background:#fffef7;color:var(--research-ink);border-radius:6px;padding:8px;font:inherit;max-width:100%}
+.research-button,.research-link,.research-tab{font:inherit;border-radius:6px;cursor:pointer}
+.research-button{padding:9px 12px;border:1px solid var(--research-border);background:#faf9f0;color:var(--research-ink);white-space:nowrap}
+.research-button:disabled{cursor:default;opacity:.55}
+.research-link{padding:2px 0;border:0;background:transparent;color:var(--research-accent);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.research-tabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--research-border);margin-bottom:18px}
+.research-tab{background:transparent;border:0;border-bottom:3px solid transparent;color:var(--research-muted);padding:11px 14px;border-radius:6px 6px 0 0;font-weight:650}
+.research-tab[aria-selected=true]{color:var(--research-ink);border-bottom-color:var(--research-accent);background:#f2f3e9}
+.research-shell :focus-visible,.research-replay :focus-visible{outline:3px solid #8a6a1e;outline-offset:3px}
+.research-tab-panel{min-height:240px}
+.research-facts{display:grid;grid-template-columns:minmax(140px,1fr) minmax(180px,2fr);gap:12px 20px;font-size:13px;margin:16px 0}
+.research-facts dt{color:var(--research-muted)}
+.research-facts dd{margin:0;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.research-table-scroll{overflow-x:auto;border:1px solid var(--research-border);border-radius:8px;margin:14px 0}
+.research-table{width:100%;border-collapse:collapse;font-size:12px;text-align:left}
+.research-table th{font-weight:650;color:var(--research-muted);background:#f6f6ed}
+.research-table th,.research-table td{padding:11px 13px;border-bottom:1px solid #ececdf;vertical-align:top;overflow-wrap:anywhere}
+.research-table tbody tr:last-child td{border-bottom:0}
+.research-table td:nth-child(n+2){font-variant-numeric:tabular-nums}
+.research-table-scroll>.research-empty{margin:14px}
+.research-note{padding:12px 14px;background:#f0f2e7;border-left:3px solid #78894c;font-size:12px}
+.research-unknown{background:#fbf1dc;border-left-color:#a78039}
+.research-provenance{border-top:1px solid var(--research-border);margin-top:20px;padding-top:12px;font-size:12px}
+.research-provenance summary{cursor:pointer;font-weight:650}
+.research-counter-strip{display:flex;flex-wrap:wrap;gap:8px 18px;padding:14px 0;border-bottom:1px solid var(--research-border);font-size:12px}
+.research-row-actions{display:flex;gap:12px;flex-wrap:wrap}
+.research-replay{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 0}
+.research-seek{display:flex;align-items:center;gap:8px;flex:1 1 220px;min-width:160px;font-size:12px}
+.research-seek input{min-width:90px;flex:1;accent-color:#59733d}
+.research-replay-clock{font-size:11px;font-variant-numeric:tabular-nums}
+.research-replay>p{margin:0;flex-basis:100%;font-size:11px}
+@media(max-width:650px){
+  .research-shell{padding:16px}
+  .research-heading{flex-direction:column;gap:8px}
+  .research-shell h2{font-size:21px}
+  .research-tabs{gap:0}
+  .research-tab{padding:10px;font-size:12px}
+  .research-facts{grid-template-columns:1fr;gap:5px}
+  .research-facts dd{margin-bottom:10px}
+  .research-table{min-width:500px}
+}
+@media(prefers-reduced-motion:reduce){.research-shell *,.research-replay *{scroll-behavior:auto}}
+/* Battle history on a phone: one card per battle (research-table-cards, set by table(..., {cards:true})). */
+@media(max-width:640px){
+  .research-table.research-table-cards{min-width:0}
+  .research-table-cards thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .research-table-cards,.research-table-cards tbody{display:block;width:100%}
+  .research-table-cards tr{display:block;padding:12px 13px;border-bottom:1px solid #ececdf}
+  .research-table-cards tbody tr:last-child{border-bottom:0}
+  .research-table-cards td{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:2px 0;border:0;text-align:right;white-space:normal}
+  .research-table-cards td::before{content:attr(data-label);color:var(--research-muted);text-align:left;white-space:nowrap}
+  .research-table-cards td:first-child{display:block;text-align:left;padding-bottom:6px}
+  .research-table-cards td:first-child::before,.research-table-cards td:last-child::before{content:none}
+  .research-table-cards td:last-child{justify-content:flex-start;padding-top:8px}
+}

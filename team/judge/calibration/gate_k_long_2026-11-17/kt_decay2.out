@@ -1,0 +1,5 @@
+skill until 2023 kappa 1.0, best of 1: rule: E2 0.25, tail 0.50: 14.8 % | E2 0.10, tail 0.50: 7.7 % | E2 0.25, tail 0.25: 10.6 % | E2 0.10, tail 0.25: 6.0 % | E2 0.05, tail 0.50: 4.1 % | no E2 and tail timing: 18.9 %
+skill until 2023 kappa 1.0, best of 24: rule: E2 0.25, tail 0.50: 23.6 % | E2 0.10, tail 0.50: 15.8 % | E2 0.25, tail 0.25: 16.3 % | E2 0.10, tail 0.25: 12.0 % | E2 0.05, tail 0.50: 9.8 % | no E2 and tail timing: 27.0 %
+skill until 2023 kappa 2.5, best of 1: rule: E2 0.25, tail 0.50: 17.5 % | E2 0.10, tail 0.50: 8.8 % | E2 0.25, tail 0.25: 12.9 % | E2 0.10, tail 0.25: 7.0 % | E2 0.05, tail 0.50: 4.7 % | no E2 and tail timing: 22.1 %
+skill until 2023 kappa 2.5, best of 24: rule: E2 0.25, tail 0.50: 28.9 % | E2 0.10, tail 0.50: 18.9 % | E2 0.25, tail 0.25: 19.6 % | E2 0.10, tail 0.25: 14.2 % | E2 0.05, tail 0.50: 12.6 % | no E2 and tail timing: 32.3 %
+exit=0

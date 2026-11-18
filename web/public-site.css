@@ -1,0 +1,44 @@
+/* Public static site: index and per-battle badges. Reuses the arena/research look; no owner controls exist here. */
+.public-page .page-shell{max-width:1180px;width:calc(100% - 48px);padding:24px 0 48px}
+.public-head{margin:8px 0 24px}.public-head h1{margin:6px 0 10px;font:600 40px/1.1 Cormorant,Georgia,serif;color:#173f34}
+.public-note{font-weight:650;max-width:72ch;color:#34372e;line-height:1.5}
+.public-section{margin:0 0 28px}.public-section h2{margin:0 0 6px;font-size:24px;line-height:1.25;font-weight:650;color:#173f34}
+.public-meta{color:#696e60;font-size:13px;margin:0 0 10px}
+.public-mode{display:inline-block;font-weight:750;letter-spacing:.04em;font-size:13px;padding:4px 10px;border-radius:6px;border:2px solid currentColor;margin:4px 0}
+.public-mode[data-mode=OKX_LIVE]{color:#a94e3c}.public-mode[data-mode=OKX_DEMO]{color:#8c6220}.public-mode[data-mode=PAPER]{color:#466e87}
+.public-nav{margin:4px 0 8px;font-size:14px}.public-nav a{color:#173f34;font-weight:650}
+.public-headline{font-size:17px;font-weight:650;line-height:1.45;max-width:78ch;margin:8px 0 12px}
+.public-table-scroll{overflow-x:auto;border:1px solid #dddccd;border-radius:8px;margin:12px 0;background:#fffef7}
+.public-table{width:100%;border-collapse:collapse;font-size:13px;text-align:left}
+.public-table th{font-weight:650;color:#696e60;background:#f6f6ed;white-space:nowrap}
+.public-table th,.public-table td{padding:8px 10px;border-bottom:1px solid #e6e5d6;vertical-align:top}
+.public-table tr:last-child td{border-bottom:0}.public-table tr[data-cash] td,.public-table tr[data-cash] th{color:#696e60}
+.public-table .public-rank{font-weight:750;font-size:14px}.public-table .public-author{display:block;margin-top:3px;color:#696e60;font-size:11px}
+.public-table .public-why{color:#696e60;font-size:12px;max-width:52ch}
+.public-verdict{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:650;background:#eef0e4;color:#34372e}
+.public-verdict[data-verdict=ABOVE_CASH]{background:#dfeedb;color:#2f5f2b}.public-verdict[data-verdict=BELOW_CASH]{background:#f3dcd6;color:#8a3b2d}
+.public-battle-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.public-battle{border:1px solid #dddccd;border-radius:10px;padding:12px 14px;background:#fffef7;display:grid;gap:4px}
+.public-battle strong{font-size:16px}.public-battle a{color:#173f34;font-weight:650}
+.public-guide{margin:24px 0;padding:12px 16px;border:1px solid #dddccd;border-radius:10px;background:#fffef7}
+.public-guide summary{font-weight:650;cursor:pointer}.public-guide ol{margin:8px 0 0;padding-left:20px;line-height:1.5}
+.public-foot{color:#696e60;font-size:12px;margin-top:32px;border-top:1px solid #dddccd;padding-top:12px}
+.public-empty{color:#696e60}
+/* Row headers read as names, not as header cells. */
+.public-table tbody th{background:transparent;color:#34372e;font-weight:inherit;white-space:normal;min-width:140px}
+.public-table tbody th strong{display:block;font-weight:650}
+@media(max-width:720px){.public-page .page-shell{width:calc(100% - 32px)}.public-head h1{font-size:30px}}
+/* Phones: every table row becomes a card with its column labels, so nothing hides behind a sideways scroll. */
+@media(max-width:640px){
+  .public-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .public-table,.public-table tbody{display:block;width:100%}
+  .public-table tr{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:10px 12px;border-bottom:1px solid #e6e5d6}
+  .public-table tbody tr:last-child{border-bottom:0}
+  .public-table tbody th{grid-column:2;grid-row:1;padding:0 0 4px;border:0;min-width:0}
+  .public-table td{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:2px 0;border:0;text-align:right}
+  .public-table td::before{content:attr(data-label);color:#696e60;text-align:left;white-space:nowrap}
+  .public-table td.public-rank{grid-column:1;grid-row:1;display:block;padding:0}
+  .public-table td.public-rank::before,.public-table td:empty::before{content:none}
+  .public-table td:empty{display:none}
+  .public-table .public-why{max-width:none}
+}

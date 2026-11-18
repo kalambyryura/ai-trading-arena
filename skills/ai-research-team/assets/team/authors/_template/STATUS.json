@@ -1,0 +1,19 @@
+{
+  "author": "{{AUTHOR}}",
+  "status": "DRAFT",
+  "branch": "team/{{AUTHOR}}",
+  "current_candidate": null,
+  "live_version": null,
+  "updated_at": "{{NOW_UTC}}",
+  "phase": "set up; day-1 notebook section and hypotheses next",
+  "configs_tested": 0,
+  "paid_api_spent_usd": 0,
+  "blockers": [],
+  "rejected": [],
+  "evaluator": {
+    "pack_sha256": null,
+    "pack_verify": null,
+    "reconciliations": []
+  },
+  "notes": []
+}

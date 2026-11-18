@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Розбір і повтор · Арена стратегій</title>
+  <link rel="stylesheet" href="/assets/icons.css">
+  <link rel="stylesheet" href="/arena.css">
+  <link rel="stylesheet" href="/arena-coliseum.css">
+  <link rel="stylesheet" href="/research-panels.css">
+  <link rel="stylesheet" href="/review.css">
+  <script src="/review-model.js" defer></script>
+  <script src="/review-verify.js" defer></script>
+  <script src="/event-replay.js" defer></script>
+  <script src="/replay-labels.js" defer></script>
+  <script src="/research-panels.js" defer></script>
+  <script src="/arena-battle-view.js" defer></script>
+  <script src="/bot-waiting.js" defer></script>
+  <script src="/battle-timeline.js" defer></script>
+  <script src="/battle-facts.js" defer></script>
+  <script src="/arena-coliseum.js" defer></script>
+  <script src="/review.js" defer></script>
+</head>
+<body class="review-page">
+  <a class="review-skip" href="#review-main">До вмісту</a>
+  <header class="review-topbar">
+    <a class="review-brand" href="/arena">АРЕНА <span>СТРАТЕГІЙ</span></a>
+    <nav aria-label="Сторінки арени"><a href="/arena">Колізей</a><a href="/league">Ліга</a><a href="/workshop">Майстерня</a></nav>
+  </header>
+  <main id="review-main" class="review-main">
+    <header class="review-page-heading">
+      <div><p class="research-kicker">ІСТОРІЯ БОЮ</p><h1>Розбір і повтор</h1><p id="review-identity" class="research-muted">Читаємо локальний журнал…</p></div>
+      <button id="review-verify" class="research-button" type="button" disabled>Перевірити пакет</button>
+      <a id="review-save-battle" class="research-button" download>Зберегти весь бій · ZIP</a>
+      <a id="review-save-debrief" class="research-button" download>Зрозумілий розбір · HTML</a>
+    </header>
+    <p id="review-notice" class="review-notice" role="status" aria-live="polite">Завантаження…</p>
+    <nav class="review-view-nav" aria-label="Перегляд журналу">
+      <button id="review-view-button" type="button" aria-current="page">Розбір</button>
+      <button id="replay-view-button" type="button">Повтор у колізеї</button>
+    </nav>
+    <section id="review-view" aria-label="Підсумковий розбір"><div id="review-host"></div></section>
+    <section id="replay-view" aria-label="Причинний повтор" hidden>
+      <header class="review-replay-heading"><h2>Лише події до вибраного моменту</h2><p id="replay-status" class="research-muted">Повтор ще не завантажено.</p></header>
+      <div id="replay-controls"></div>
+      <div id="replay-coliseum"></div>
+      <section class="review-prefix" aria-labelledby="replay-prefix-heading"><h3 id="replay-prefix-heading">Стан у цьому кадрі</h3><div id="replay-prefix"></div></section>
+      <details class="review-evidence" open><summary>Записані дії та обсяги</summary><ol id="replay-events" class="review-events"></ol></details>
+      <p class="research-muted review-tape-note">Кінець запису не закриває позицію. LONG/SHORT і скорочення обсягу відтворюються лише зі спостережених даних; пауза стосується перегляду.</p>
+    </section>
+    <details id="review-integrity" class="review-integrity"><summary>Перевірка та походження</summary><dl id="review-integrity-facts" class="research-facts"></dl></details>
+  </main>
+</body>
+</html>

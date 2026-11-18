@@ -1,0 +1,41 @@
+.league-page .research-shell {background:transparent;}
+.league-page .research-table td:first-child {min-width:170px;max-width:270px;overflow-wrap:anywhere;}
+.league-page .research-counter-strip {flex-wrap:wrap;}
+.league-page .research-provenance {margin-top:18px;}
+.league-page .research-provenance .research-table-scroll {margin-top:14px;}
+.league-page .research-table td {vertical-align:top;}
+.league-page .research-table td:nth-child(2),.league-page .research-table td:nth-child(3),.league-page .research-table th:nth-child(2),.league-page .research-table th:nth-child(3) {white-space:nowrap;}
+@media(max-width:640px) {.league-page .review-topbar nav {gap:14px;}.league-page .research-heading {flex-wrap:wrap;}}
+/* B-04 public standings and readable battle names; later rules intentionally override the history table defaults. */
+.league-page #league-standings {margin:0 0 24px;}
+.league-page #league-standings:empty {display:none;}
+.league-standings-lead {font-size:16px;font-weight:650;max-width:70ch;}
+.league-group {margin-top:22px;}
+.league-group h3 {margin:0;font-size:15px;line-height:1.4;font-weight:650;}
+.league-group > .research-muted {margin:4px 0 0;}
+.league-page .league-standings td {white-space:nowrap;}
+.league-page .league-standings td:first-child {min-width:0;max-width:none;width:1%;text-align:center;}
+.league-page .league-standings thead th {white-space:nowrap;}
+.league-page .league-standings td:nth-child(6),.league-page .league-standings td:nth-child(7) {white-space:normal;min-width:118px;}
+.league-page .league-standings th[scope=row] {min-width:190px;max-width:300px;white-space:normal;background:transparent;color:var(--research-ink);font-weight:inherit;}
+.league-standings th[scope=row] strong {display:block;font-weight:650;}
+.league-author {display:block;margin-top:3px;color:var(--research-muted);font-size:11px;white-space:normal;}
+.league-rank {font-weight:750;font-size:14px;}
+.league-standings tr[data-cash] strong,.league-standings tr[data-cash] .league-rank {color:var(--research-muted);}
+.league-verdict {display:inline-block;padding:3px 9px;border-radius:999px;border:1px solid currentColor;font-size:11px;font-weight:650;white-space:nowrap;color:var(--research-muted);}
+.league-verdict[data-verdict=ABOVE_CASH] {color:#3f6b2a;background:#eef4e6;}
+.league-verdict[data-verdict=BELOW_CASH] {color:#9a3b2e;background:#fbecea;}
+.league-verdict[data-verdict=INDISTINGUISHABLE] {color:#6b5a1e;background:#f7f1de;}
+.research-battle-name strong,.research-battle-name small {display:block;}
+.research-battle-name small {margin-top:3px;}
+@media(max-width:640px) {
+  .league-page .league-standings thead {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+  .league-page .league-standings,.league-page .league-standings tbody {display:block;width:100%;min-width:0;}
+  .league-page .league-standings tr {display:grid;grid-template-columns:auto 1fr;gap:4px 12px;padding:12px 13px;border-bottom:1px solid #ececdf;}
+  .league-page .league-standings tbody tr:last-child {border-bottom:0;}
+  .league-page .league-standings th[scope=row] {grid-column:2;grid-row:1;min-width:0;max-width:none;padding:0 0 6px;border:0;}
+  .league-page .league-standings td {grid-column:1 / -1;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:2px 0;border:0;white-space:normal;min-width:0;text-align:right;}
+  .league-page .league-standings td::before {content:attr(data-label);color:var(--research-muted);text-align:left;white-space:nowrap;}
+  .league-page .league-standings td:first-child {grid-column:1;grid-row:1;display:block;width:auto;padding:0;}
+  .league-page .league-standings td:first-child::before {content:none;}
+}

@@ -1,0 +1,56 @@
+/* Small wrapper around the existing Coliseum; owner controls are not loaded here. */
+.review-page {margin:0;background:#f7f5ec;color:#343c2d;font-family:Manrope,system-ui,sans-serif;}
+.review-page [hidden] {display:none!important;}
+.review-page a {color:#4a6235;}
+.review-topbar {display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px max(24px,calc((100vw - 1180px)/2));border-bottom:1px solid #d6dacb;background:#faf8ef;}
+.review-brand {font-size:13px;font-weight:800;letter-spacing:.16em;text-decoration:none;white-space:nowrap;}
+.review-brand span {font-weight:400;letter-spacing:.12em;}
+.review-topbar nav {display:flex;gap:20px;font-size:13px;}
+.review-topbar nav a {text-decoration:none;}
+.review-main {width:min(1180px,calc(100% - 48px));margin:32px auto 64px;}
+.review-page-heading {display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:14px;}
+.review-page h1 {font:500 clamp(34px,4vw,48px)/1.05 CormorantGaramond,Georgia,serif;margin:0 0 12px;}
+.review-page h2 {font:500 29px/1.2 CormorantGaramond,Georgia,serif;}
+.review-page h3 {font-size:14px;}
+.review-page button,.review-page select {min-height:42px;}
+.review-notice {margin:12px 0 20px;padding:10px 14px;border:1px solid #ccd5bc;border-radius:6px;background:#edf2e4;font-size:13px;overflow-wrap:anywhere;}
+.review-notice[data-kind="error"] {border-color:#d8b9af;background:#f4e6e0;color:#803b29;}
+.review-notice[data-kind="pending"] {background:#f2efe3;border-color:#d5ceb8;}
+.review-view-nav {display:flex;gap:5px;border-bottom:1px solid #cdd2c2;margin-bottom:22px;}
+.review-view-nav button {padding:10px 17px;background:transparent;border:0;border-bottom:3px solid transparent;color:#727a65;cursor:pointer;font:600 14px Manrope,system-ui,sans-serif;}
+.review-view-nav button[aria-current] {color:#415d29;border-color:#668342;}
+.review-replay-heading h2 {margin-bottom:6px;}
+.review-replay-heading p {margin-top:0;}
+.review-page .research-replay {margin-bottom:14px;}
+.review-page .research-replay p {flex-basis:100%;margin:3px 0 0;}
+.review-prefix {margin:20px 0 16px;padding:12px 16px;border:1px solid #d7dbce;border-radius:8px;background:#faf8f0;}
+.review-prefix h3 {margin:0 0 12px;}
+.review-prefix .research-table td,.review-prefix .research-table th {white-space:nowrap;}
+.review-evidence {border:1px solid #d7dbce;border-radius:8px;background:#faf8f0;padding:14px 16px;}
+.review-evidence summary,.review-integrity summary {cursor:pointer;font-weight:600;font-size:13px;}
+.review-events {list-style:none;padding:0;margin:12px 0 0;display:grid;gap:4px;}
+.review-event-button {display:grid;grid-template-columns:55px minmax(160px,1fr) minmax(155px,auto);align-items:start;gap:10px;text-align:left;width:100%;padding:10px;border:1px solid transparent;background:transparent;border-radius:5px;color:inherit;cursor:pointer;font:13px Manrope,system-ui,sans-serif;}
+.review-event-button:hover {background:#edf0e4;}
+.review-event-button[aria-current] {border-color:#becdac;background:#edf2e4;}
+.review-event-seq {font-size:12px;color:#7b826e;}
+.review-event-action {font-weight:600;}
+.review-event-detail,.review-event-at {display:block;font-size:11px;color:#78806d;margin-top:4px;font-weight:400;overflow-wrap:anywhere;}
+.review-event-position {text-align:right;font-variant-numeric:tabular-nums;}
+.review-tape-note {font-size:12px;}
+.review-integrity {margin-top:22px;padding-top:14px;border-top:1px solid #d6dacb;}
+.review-integrity .research-facts {margin-top:14px;}
+.review-integrity dd {overflow-wrap:anywhere;}
+.review-skip {position:fixed;top:-80px;left:16px;background:#fff;padding:12px;z-index:20;}
+.review-skip:focus {top:8px;}
+.review-page :focus-visible {outline:3px solid #668342;outline-offset:3px;}
+@media(max-width:640px) {
+  .review-topbar {padding:18px 16px;gap:12px;flex-wrap:wrap;}
+  .review-topbar nav {gap:18px;}
+  .review-main {width:calc(100% - 28px);margin-top:22px;}
+  .review-page-heading {align-items:flex-start;gap:12px;flex-wrap:wrap;}
+  .review-page-heading .research-button {font-size:12px;}
+  .review-event-button {grid-template-columns:43px minmax(0,1fr);gap:8px;padding:9px 3px;}
+  .review-event-position {grid-column:2;text-align:left;font-size:12px;}
+  .review-prefix,.review-evidence {padding:12px;}
+  .review-brand {font-size:11px;}
+}

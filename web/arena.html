@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="panel-token" content="__PANEL_TOKEN__">
+  <meta name="theme-color" content="#f5f4e9">
+  <title>Арена стратегій · Jev Trading Lab</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/arena.css">
+  <link rel="stylesheet" href="/arena-strategy.css">
+  <link rel="stylesheet" href="/arena-lifecycle.css">
+  <script src="/arena-lifecycle.js" defer></script>
+  <script src="/arena-strategy.js" defer></script>
+  <link rel="stylesheet" href="/assets/icons.css">
+  <link rel="stylesheet" href="/arena-coliseum.css">
+  <script src="/bot-waiting.js" defer></script>
+  <script src="/battle-timeline.js" defer></script>
+  <script src="/arena-coliseum.js" defer></script>
+  <script src="/poll-scheduler.js" defer></script>
+  <script src="/battle-facts.js" defer></script>
+  <script src="/review-model.js" defer></script>
+  <script src="/strategy-research.js" defer></script>
+  <script src="/battle-context.js" defer></script>
+  <script src="/author-report.js" defer></script>
+  <script src="/live-leverage.js" defer></script>
+  <script src="/arena.js" defer></script>
+</head>
+<body class="coliseum-page audience-view">
+  <a class="skip-link" href="#coliseum-watch">До арени й списку учасників</a>
+  <dialog id="battle-demo-dialog" class="battle-demo-dialog" aria-labelledby="battle-demo-title">
+    <header class="battle-demo-head"><div><h2 id="battle-demo-title">Демо: шлях на ринг</h2><p>Вигадані персонажі та результати · без угод і запитів до біржі</p></div><button type="button" id="battle-demo-close" aria-label="Закрити демо">×</button></header>
+    <p class="battle-demo-note">Це лише анімація: великі зміни капіталу й нокаут створені для показу. Торгові ліміти справжнього PAPER-сезону тут не відтворюються.</p>
+    <div class="battle-demo-controls"><button type="button" id="battle-demo-restart">↺ Повторити демо</button><label>Кадр <input id="battle-demo-frame" type="range" min="0" max="13" value="0" aria-label="Кадр демонстрації"></label><span id="battle-demo-counter">1 / 14</span></div>
+    <div class="arena-floor" id="battle-demo-floor"></div><p id="battle-demo-info" class="battle-demo-note" role="status">Натисни на персонажа або картку, щоб перевірити його стан.</p>
+  </dialog>
+
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/arena"><span class="brand-symbol">J</span><span>Jev <i>/ Trading Lab</i></span></a>
+      <nav aria-label="Навігація">
+        <a class="nav-link active" href="/arena" aria-current="page">Арена</a>
+        <button class="nav-link" id="open-strategies" type="button">Стратегії</button>
+        <a class="nav-link" href="/workshop">Майстерня</a>
+        <a class="nav-link" href="/league">Ліга</a>
+        <a class="nav-link" href="#research-tools">Інструменти</a>
+      </nav>
+      <div id="connection" class="connection"><span class="status-dot"></span><span>Підключення…</span></div>
+      <button class="col-button" id="open-management" type="button"><i class="ph ph-sliders" aria-hidden="true"></i>Керування</button>
+    </header>
+    <main>
+      <section class="watch-heading" aria-labelledby="watch-title">
+        <div class="eyebrow">ЛІГА АВТОРСЬКИХ СТРАТЕГІЙ</div>
+        <h1 id="watch-title">Колізей стратегій</h1>
+        <p class="watch-subtitle" id="watch-subtitle">Читаємо журнал арени…</p>
+        <p class="watch-load-hint" id="watch-load-hint" role="status">Сторінка не завантажилась повністю. Перезавантаж цю вкладку; сервер не перезапускай — раунд і торгівлю це не зачіпає.</p>
+        <p class="watch-round-state" id="watch-round-state" role="status">Завантаження раунду</p>
+        <p class="watch-book" id="watch-book" role="status" hidden></p>
+        <p class="watch-markets" id="watch-markets" hidden></p>
+        <div class="watch-controls">
+          <label>Режим <select id="watch-mode"><option value="live" selected>OKX Live · реальні кошти</option><option value="paper">PAPER · віртуальні угоди</option></select></label>
+          <label>Раунд <select id="watch-history" aria-label="Вибрати раунд для перегляду"><option value="current">Поточний / останній</option></select></label>
+          <button id="watch-events" class="col-text-button" type="button"><i class="ph ph-notebook" aria-hidden="true"></i>Деталі раунду</button>
+          <a id="watch-export" class="col-text-button" hidden download>Зберегти бій · ZIP</a>
+        </div>
+      </section>
+      <div id="season-message" class="banner" hidden role="status"></div>
+      <section id="coliseum-watch" aria-label="Спостереження за боєм стратегій" tabindex="-1"></section>
+      <details class="research-tools" id="research-tools">
+        <summary><i class="ph ph-wrench" aria-hidden="true"></i>Дослідницькі інструменти · PAPER, демонстрація й архів</summary>
+        <p>Безкоштовне тренування та OKX Demo — у <a href="/workshop">Майстерні</a>. <a href="/live">Попередня торгова панель V3</a>.</p>
+      <section class="season-stage" aria-labelledby="season-heading">
+        <div class="section-head"><div><div class="eyebrow muted-eyebrow">ЗАРАЗ НА АРЕНІ</div><h2 id="season-heading">Сезон стратегій</h2><button class="battle-demo-open" id="battle-demo" type="button">⚔ Демо бою</button></div><div id="season-clock" class="season-clock"><span class="pulse"></span><span id="season-status">Читаємо стан</span><span class="separator">·</span><span id="market-mid">BTC —</span></div></div>
+        <div id="paper-message-unused" class="banner" hidden role="status"></div>
+        <div id="empty-arena" class="empty-arena" hidden><div class="empty-icon">✳</div><h3>Поки тихо. Правила ще не вийшли на арену.</h3><p>Оберіть готові стратегії та розпочніть обмежений paper-сезон. Кожен учасник отримує однаковий ринок і власний віртуальний бюджет.</p></div>
+        <div id="arena-view" class="arena-view" hidden>
+          <div id="arena-topline" class="arena-topline"><span id="arena-round">СЕЗОН · —</span><span id="arena-duration">—</span><span class="arena-topline-spacer"></span><span id="feed-mode" class="feed-mode">ЖИВИЙ ПАПЕРОВИЙ СЕЗОН</span></div>
+          <div id="season-actions" class="season-actions"></div>
+          <p id="season-runtime" class="funding-disclosure"></p>
+          <div class="arena-floor legacy-floor" id="arena-floor" aria-label="Учасники сезону"></div>
+          <div class="leaderboard-wrap"><div class="leaderboard-head"><h3>Таблиця цього сезону</h3><span>Зміна місця залежить лише від equity</span></div><div id="leaderboard" class="leaderboard"></div></div>
+          <div id="replay-controls" class="replay-controls" hidden>
+            <div class="replay-title"><span class="replay-icon">↺</span><div><b>Повтор сезону</b><small>Відтворюємо вже записані події · без виконання</small></div></div>
+            <button id="replay-toggle" class="icon-button" type="button" aria-label="Відтворити повтор">▶</button>
+            <label class="sr-only" for="replay-range">Позиція у повторі</label><input id="replay-range" type="range" min="0" max="0" value="0">
+            <span id="replay-time" class="replay-time">0 / 0</span>
+            <label class="sr-only" for="replay-speed">Швидкість повтору</label><select id="replay-speed" aria-label="Швидкість повтору"><option value="1">1×</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option></select>
+          </div>
+          <div id="arena-events" class="event-feed" aria-live="polite"></div>
+          <div id="paper-lifecycle"></div>
+          <p class="funding-disclosure">Комісії симулюються; funding оцінюється за останньою спостереженою ставкою та попередньою mid-ціною. Це не фактичні списання OKX.</p>
+        </div>
+      </section>
+
+
+        <section class="paper-launch"><h2>Запуск PAPER</h2><p>Склад обирається в «Керуванні». Ці угоди віртуальні; shared Jev може мати окремі AI-витрати.</p>
+        <details class="rules-read"><summary>Правила paper-виконання та межі симуляції</summary><div class="rules-read-grid"><div><b>Ринок</b><span>BTC-USDT-SWAP · публічні котирування OKX · плече 1×</span></div><div><b>Виконання</b><span>Наступне свіже котирування після рішення · вплив на ціну 2 б.п. за бік</span></div><div><b>Комісія</b><span>Модельні 5 б.п. за бік на кожне paper-заповнення</span></div><div><b>Ліквідність</b><span>До 10% видимого обсягу найкращого рівня на учасника · вхід виконується повністю або пропускається · вихід може бути частковим</span></div><div><b>Ліміти учасника</b><span>Зупинка на просадці 10% або після 20 входів за сезон</span></div><div><b>Частота та дані</b><span>Перевірка ринку кожні 5 с · стратегія оцінюється приблизно кожні 30 с · після 3 помилок даних нові входи припиняються</span></div><div><b>Funding</b><span>Оцінка за останньою спостереженою ставкою та попередньою mid-ціною; не фактичне списання біржі</span></div><div><b>AI та витрати</b><span>Рушій обирається перед сезоном: правила або спільний Jev. Авторські моделі не викликаються.</span></div></div></details>
+        <div class="start-panel">
+          <div class="league-controls"><label for="runtime-select">Спільний рушій сезону</label><select id="runtime-select"><option value="rules">Формальні правила · без AI-витрат</option><option value="shared_jev">Правила + спільний Jev · платні AI-запити</option></select><p id="runtime-note">Усі учасники сезону використовують один рушій. Тренування майстерні — формальні правила, без викликів Jev.</p><p>Для Jev: до 30 запитів / $0.005 за сезон; у цій серії до 200 / $0.05. Суми — пороги за звітом провайдера, один запит може їх перевищити. Невідомий рахунок блокує нові виклики. Угоди залишаються віртуальними.</p></div>
+          <div class="start-title"><div class="cash-mark">▣</div><div><h3>Скриня теж грає</h3><p>Базовий учасник без позиції: його equity завжди дорівнює стартовому бюджету.</p></div></div>
+          <div class="start-options"><label>Віртуальний бюджет <span class="input-wrap"><input id="budget-input" type="number" min="25" max="1000" step="25" value="100"><b>USDT / бот</b></span></label><label>Час для нових входів <select id="duration-select"><option value="300">5 хвилин</option><option value="900" selected>15 хвилин</option><option value="1800">30 хвилин</option><option value="3600">1 година</option><option value="7200">2 години</option><option value="18000">5 годин</option><option value="86400">24 години</option></select></label><div class="selected-count"><b id="selected-count">0</b><span>готових стратегій обрано</span></div><button id="start-season" class="start-button" type="button" disabled><span>▶</span> Запустити paper-сезон</button></div>
+          <p class="v6-admission-note">Дедлайн завершує нові входи й докупівлі. Відкриті позиції закриваються за правилами своїх стратегій; раунд завершується, коли останній бот вийде. До дедлайну можна починати наступний цикл. Stop і ризикові межі діють одразу.</p><div class="start-foot"><span>Скриня додається автоматично · спільний рушій для всіх</span><span>Тренування: <b>0 платних AI-запитів</b></span></div>
+        </div>
+
+        </section>
+      <section class="season-history" aria-labelledby="history-heading"><div class="section-head"><div><div class="eyebrow muted-eyebrow">ЗАПИСАНІ ЗАБІГИ</div><h2 id="history-heading">Історія сезонів</h2></div><span class="history-note">Підсумок лише цих правил і цього відрізка ринку</span></div><div id="season-list" class="season-list"></div></section>
+
+      </details>
+      <footer><span>ОДНАКОВІ УМОВИ · ВІДКРИТІ ПРАВИЛА</span><span>JEV TRADING LAB · КОЛІЗЕЙ СТРАТЕГІЙ</span></footer>
+    </main>
+  </div>
+  <dialog id="management-dialog" class="owner-dialog" aria-labelledby="management-title">
+    <header class="owner-dialog-header"><div><h2 id="management-title">Керування ареною</h2><p>Склад, окремі акаунти й запуск власником</p></div><button id="management-close" class="col-button" type="button" aria-label="Закрити керування"><i class="ph ph-x" aria-hidden="true"></i>Закрити</button></header>
+      <section class="launch-section" aria-labelledby="launch-heading">
+        <div class="section-head launch-head"><div><div class="eyebrow muted-eyebrow">ПІДГОТУВАТИ НАСТУПНИЙ ЗАБІГ</div><h2 id="launch-heading">Обрати учасників</h2></div><span class="finite-label">ОДИН СКІНЧЕННИЙ СЕЗОН</span></div>
+        <div class="honesty-note"><span>ⓘ</span><p><b>Склад визначає каталог.</b> Готові авторські рецепти можна обрати до старту. Неподані рецепти лишаються чернетками; навчальні приклади в лізі не рахуються. Назва моделі — заявлене авторство, а результат сезону порівнює зафіксовані стратегії.</p></div>
+        <div class="catalogue-head"><h3>Каталог стратегій</h3><div class="catalogue-actions"><button id="new-strategy" class="quiet-button" type="button">＋ Нова стратегія</button><button id="edit-strategy" class="quiet-button" type="button" disabled>Редагувати вибрану</button></div></div>
+        <div id="catalogue" class="catalogue"></div><p class="catalogue-context-note">Вибраний набір можна запустити окремо в PAPER нижче або прив’язати до OKX Live subaccount у розділі реального сезону.</p>
+      </section>
+
+      <section class="exchange-live-section" aria-labelledby="live-exchange-heading">
+        <div class="section-head"><div><div class="eyebrow muted-eyebrow">OKX LIVE · ОКРЕМИЙ SUBACCOUNT НА БОТА</div><h2 id="live-exchange-heading">Реальний сезон</h2></div><span class="real-money-chip">РЕАЛЬНІ КОШТИ</span></div>
+        <div class="live-warning"><b>Live-торгівля.</b> Запуск надсилає реальні заявки OKX і може спричинити втрату коштів. Оберіть лише стратегії, яким довіряєте, та окремий профіль/subaccount для кожного бота. Спочатку доступний Demo у Майстерні.</div>
+        <p id="live-budget-status" class="live-budget-status" role="status">Завантажуємо ліміти Jev…</p>
+        <label for="live-execution-mode">Рішення входів</label>
+        <select id="live-execution-mode"><option value="shared_jev" selected>Jev-гейт · чинний режим</option><option value="rules_only" disabled>RULES_ONLY · Jev SHADOW</option></select>
+        <p id="live-mode-help" class="v6-admission-note">Jev перевіряє вхід і докупівлю. Ризик та вихід контролює код.</p>
+        <div class="live-launch-grid"><div class="live-account-map"><h3>Профіль для кожної вибраної стратегії</h3><p>Тут використовуються ті самі картки вибору з каталогу. Для кожного бота потрібен унікальний OKX Live subaccount.</p><div id="live-account-rows" class="live-account-rows"><p class="empty-data">Оберіть готові стратегії вище.</p></div><p id="live-leverage-summary" class="v6-admission-note" role="status"></p></div>
+          <div class="live-options"><label for="live-budget">Бюджет на бота</label><div class="input-wrap"><input id="live-budget" type="number" min="25" max="500" step="25" value="100"><b>USDT</b></div><label for="live-duration">Час для нових входів</label><select id="live-duration"><option value="300">5 хвилин</option><option value="900" selected>15 хвилин</option><option value="1800">30 хвилин</option><option value="3600">1 година</option><option value="7200">2 години</option><option value="18000">5 годин</option><option value="86400">24 години</option></select><button id="live-check" class="quiet-button" type="button">Перевірити доступ · лише читання</button><button id="live-start" class="live-start-button" type="button" disabled>Запустити реальний сезон</button></div>
+        </div>
+        <p class="v6-admission-note">Час раунду — вікно нових входів і докупівель. Потім боти завершують відкриті позиції за власними правилами. До дедлайну закритий цикл може початися знову. Максимальний час позиції задає рецепт; старі версії не змінюються.</p><div id="live-profile-status" class="live-profile-status" role="status">Перевір готовність профілів.</div>
+        <div id="live-season-panel" class="live-season-panel" hidden><div id="live-season-actions" class="season-actions"></div><div id="live-season-battle" class="arena-floor legacy-floor"></div><div id="live-season-events" class="event-feed" aria-live="polite"></div><div id="live-lifecycle"></div></div>
+        <div id="live-season-history" class="live-season-history"></div>
+        <p class="live-cost-boundary"><b>Jev:</b> спільна перевірка входу/докупівлі, не авторські моделі. Серійний поріг — $1 за звітною вартістю; це не жорстка межа рахунку, один запит може перевищити її. Невідомий рахунок блокує нові виклики. Ліміти Jev незалежні від бюджету й PnL у USDT.</p>
+      </section>
+
+
+  </dialog>
+  <dialog id="detail-dialog" class="detail-dialog" aria-labelledby="detail-title"><div class="dialog-header"><div><span class="eyebrow muted-eyebrow" id="detail-kicker">ПАСПОРТ УЧАСНИКА</span><h2 id="detail-title">Учасник</h2></div><button id="detail-close" class="icon-button close-button" type="button" aria-label="Закрити">×</button></div><div id="detail-body" class="detail-body"></div></dialog>
+
+</body>
+</html>
