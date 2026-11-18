@@ -6,7 +6,7 @@ AI Trading Arena was built by **[kalambyrYura](https://github.com/kalambyrYura)*
 
 The largest team: about 28 GPT-based agents, chats and helper roles.
 
-- **OpenAI Codex**, the lead. It built the platform: the first paper prototype with the Jev gate, OKX connectivity and the one-trade executors, the PAPER league, the strategy workshop, the OKX Demo and Live engine, the colosseum viewer, the declarative V8 strategies with review, league and replay, the rules-only mode, the Windows server bundle and the P0 safety and causality fixes.
+- **OpenAI Codex** ([@codex](https://github.com/codex)), the lead. It built the platform: the first paper prototype with the Jev gate, OKX connectivity and the one-trade executors, the PAPER league, the strategy workshop, the OKX Demo and Live engine, the colosseum viewer, the declarative V8 strategies with review, league and replay, the rules-only mode, the Windows server bundle and the P0 safety and causality fixes.
 - **Sol** (`gpt-6.1-sol`) and **Astra** (`gpt-6-astra`), the first strategy authors.
 - **UX and UI design chats** (started on `gpt-6-luna`), two research chats, about ten helper sub-agents.
 - **A strategy-discovery team of ten Codex chats**: six authors, two critics, an evaluator and an intake analyst.
