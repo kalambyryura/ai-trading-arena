@@ -1,6 +1,6 @@
-# How a team of AI agents ran this research
+# How AI agent teams ran this research
 
-From 2026-10-28 to 2026-11-17 this project was run by one human owner (GitHub: kalambyrYura) and a team of Claude Code sessions with fixed roles. This page explains who did what, which rules they worked under, the numbers, and what worked and what did not.
+The project was built by one human owner (GitHub: kalambyrYura) and three AI teams: an OpenAI team led by Codex (29 Sep – 27 Oct 2026, about 28 GPT-based agents, chats and helper roles), a Claude team on the owner's second Claude account (1–3 Oct 2026, alongside Codex), and a Claude Code team of eleven sessions with fixed roles (28 Oct – 17 Nov 2026). This page explains who did what, which rules they worked under, the numbers, and what worked and what did not. The third team's process is documented in the most detail, so most of the page is about it.
 
 Everything here comes from the team's own working files: the charter, the protocol, the role briefs, the decision channel, the release notes, the review files and the round register. Those files were written in Ukrainian. Commit counts refer to the private working repository; this public repository starts without that history.
 
@@ -11,9 +11,40 @@ Everything here comes from the team's own working files: the charter, the protoc
 - The written process caught real problems. Independent reviews stopped several faulty releases before they reached the trading PC, and pre-registration with a trial ledger kept negative results on the record. Supervision of Live rounds by AI sessions was the weak spot.
 - The process did not find an edge. No strategy reached the "proven" status. On 2026-11-17 the owner wound trading down and decided to publish the project as open source.
 
-## Before the team
+## The teams before
 
-Until 2026-10-28 a Codex agent maintained the repository. Its notes stayed in the repository as historical sources of facts, not as instructions.
+The project had three AI teams; the second worked alongside the first for three days. The third one is described in detail on this page; here are the first two.
+
+### Team 1: OpenAI Codex and GPT agents (29 Sep – 27 Oct 2026)
+
+The largest team: about 28 GPT-based agents, chats and helper roles, led by OpenAI Codex.
+
+- **Lead: OpenAI Codex**, a local Codex app chat that kept the Git history and integrated all core code (on 3 Oct, with its consent, the Claude coordinator also merged non-core changes, and the UX chat committed its own viewer work). It built the platform: the first paper prototype with the Jev gate, OKX connectivity and the one-trade executors, the PAPER league, the strategy workshop, the OKX Demo and Live engine with isolated subaccounts, long rounds, the colosseum viewer, the declarative V8 strategies with review, league and replay, the rules-only mode with Jev in shadow, the Windows server bundle and the P0 safety and causality fixes (9 Oct). It verified every outside strategy submission.
+- **Two research chats** (29 Sep): exchanges and eligibility (6 venues, 61 official sources), and experiment design and risk.
+- **Strategy authors Sol (`gpt-6.1-sol`) and Astra (`gpt-6-astra`)**, 30 Sep – 26 Oct: the first two frozen arena strategies (V1), then postmortems, revisions and reviews. In the Live battles up to 2 Oct, Astra's bot was the only one that traded: one round trip in the first battle (30 Sep) and three in the first five-hour battle with four authors (2 Oct).
+- **UX and UI design chats** (1–3 Oct; they started on `gpt-6-luna` and moved to `gpt-6-astra` and `gpt-6.1-sol`): a screenshot audit, navigation, art direction, design tokens, input to the colosseum design and the audience view.
+- **About ten helper sub-agents** inside the lead chat: arena UI, the author kit, per-bot diagnostics, protocol and risk reviews, strategy, operations and UX audits, and spec reviews.
+- **A strategy-discovery team of ten Codex chats** (7–26 Oct): six independent authors (trend, pullback, breakout, mean reversion, extreme move, long horizon), a risk-and-execution critic, a statistics-and-overfitting critic, an evaluator and an intake analyst for the owner's own sources. They registered 12 candidates; the evaluator ran 944 trials (the 12 candidates and 4 V1 controls on 59 days each) and selected none.
+- **ChatGPT** (through the owner, 7–9 Oct): a consultation packet prepared by Codex led to a specification and a set of corrections that drove the P0 safety and causality fixes.
+
+Model names are the ones selected in the Codex app for each chat; the discovery chats used the app default and the lead's own model, neither of which was recorded.
+
+### Team 2: a Claude team on a second account (1–3 Oct 2026)
+
+A Claude coordinator with two authors, Opus (Claude Opus 5.5) and Sonnet (Claude Sonnet 5.5), worked from the owner's second Claude account alongside the Codex team. Codex checked their hashes, re-ran the held-back windows, and froze their strategies.
+
+- **1–3 Oct, in Claude Cowork:** the coordinator ran the two authors in sandboxes. They wrote the Opus and Sonnet V1 strategies (both buy after a sharp 5-minute drop, chosen from 578 and 921 candidates), found an engine bug, wrote the "1000 battles" project review with prototypes (a strategy language v2, replay, a Jev shadow payload, scheduling and a statistical power estimate), debriefed the first five-hour Live battle with four authors and took part in the V8 revision round.
+- **3 Oct, in Claude Code:** three sessions (coordinator, Opus, Sonnet), each in its own Git worktree.
+  - Paid Jev probes (about $0.17 in total) showed that the gate's confidence followed the structure of the recipe, not the market.
+  - Pre-registered research found no edge: about 4,700 configurations by Opus alone, plus Sonnet's own tests.
+  - About 30 arena improvements (out of about 100 merges that day, most of them coordination logs and research results) were merged into the Codex branch by the Claude coordinator, with Codex's consent for non-core code: battle card, league table, waiting reasons, timeline, replay moments, author report, accessibility, a public-site builder, and the backtest and Jev-probe tools.
+  - They wrote the specification of the rules-only mode with Jev in shadow, which Codex built, and shared the BTC 1-minute dataset that later became the shared development data.
+
+**About the names.** Before 28 Oct, Sol and Astra were GPT chats and Opus and Sonnet were Claude models. From 28 Oct all four names belong to Claude Opus 5.5 sessions of the third team.
+
+### Team 3: a Claude Code team (28 Oct – 17 Nov 2026)
+
+Until 2026-10-28 the Codex lead maintained the repository. Its notes stayed in the repository as historical sources of facts, not as instructions.
 
 On 2026-10-28 the lead session interviewed the owner in three rounds. The answers became twelve owner decisions, G1 to G12, recorded together as decision D093. The ones that shaped the team:
 
