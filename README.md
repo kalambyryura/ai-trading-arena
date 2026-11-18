@@ -189,7 +189,7 @@ deployment/     Windows server scripts for running the panel 24/7
   - **OpenAI Codex and GPT agents** (29 Sep – 27 Oct 2026): Codex as lead with about 28 GPT-based agents, chats and helper roles, including the strategy authors Sol and Astra, UX and UI design chats, a ten-chat strategy-discovery team with critics and an evaluator, and ChatGPT consultations;
   - **a Claude team on a second account** (1–3 Oct 2026): a coordinator with the Opus and Sonnet authors, in Claude Cowork and then Claude Code;
   - **a Claude Code team** (28 Oct – 17 Nov 2026): eleven sessions with fixed roles plus helper agents.
-- Before 28 Oct, Sol and Astra were GPT chats and Opus and Sonnet were Claude models; after it, all four names are personas of Claude Code sessions. See [docs/AI_TEAM.md](docs/AI_TEAM.md).
+- Before 28 Oct, Sol and Astra were GPT chats and Opus and Sonnet were Claude models; after it, all four names are personas of Claude Code sessions. See [CREDITS.md](CREDITS.md) and [docs/AI_TEAM.md](docs/AI_TEAM.md).
 - "Jev" in the code and the interface is the name of a third-party LLM decision model (`typesafe/jev-1.13`, reached through OpenRouter) that the project originally set out to test. This project is not affiliated with TypeSafe, OpenRouter or OKX.
 - The arena artwork was generated with an AI image tool; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 - Nothing here is investment advice. Past results, ours included, say nothing certain about the future.
